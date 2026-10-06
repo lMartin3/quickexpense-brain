@@ -1,0 +1,1316 @@
+\clearpage
+\section*{A. Resumen Ejecutivo}
+\addcontentsline{toc}{section}{A. Resumen Ejecutivo}
+
+El proyecto consiste en el desarrollo y lanzamiento de una aplicación
+web B2C de administración de finanzas personales, instalable en
+dispositivos móviles como aplicación web progresiva (PWA), bajo un
+modelo de Software como Servicio (SaaS) con opciones freemium. Su
+propuesta de valor central reside en la integración profunda con
+herramientas de Inteligencia Artificial para simplificar y automatizar
+la gestión financiera diaria del usuario. Específicamente, esta
+tecnología permite categorizar transacciones de manera automática y
+generar recomendaciones personalizadas, basadas en patrones de
+comportamiento, para sugerir estrategias financieras. De esta manera, el
+producto busca reemplazar métodos manuales o herramientas globales
+genéricas mediante una solución intuitiva e inteligente. Además, la
+plataforma admite espacios de trabajo compartidos, que permiten que
+varias personas colaboren en un mismo seguimiento financiero.
+
+El diferencial competitivo del negocio es su enfoque hiper localizado,
+diseñado específicamente para resolver las complejidades únicas de la
+realidad económica argentina. La alta inflación crónica y el régimen
+bimonetario dificultan enormemente el seguimiento de gastos y el control
+patrimonial. Para hacer frente a esta volatilidad, la aplicación realiza
+un seguimiento mensual de la inflación y del tipo de cambio del dólar
+estadounidense, lo que permite mostrar con precisión la variación en el
+valor de las tenencias del usuario. Además, incluye un seguimiento
+simple de inversiones, que permite registrar periódicamente sus
+ganancias y pérdidas, y un seguimiento de deudas que contempla las
+cuotas pendientes de las tarjetas de crédito, los préstamos bancarios y
+las deudas con terceros.
+
+Para reducir la fricción en el registro diario de movimientos, la
+plataforma opera como un asistente financiero interactivo mediante
+modelos de lenguaje. Los usuarios pueden realizar consultas y cargar
+gastos de forma omnicanal a través de un chatbot de mensajería
+---Telegram durante las etapas de prueba y WhatsApp a partir del
+lanzamiento---, utilizando el procesamiento de lenguaje natural para
+interpretar mensajes de texto, audios e imágenes. El sistema también
+cuenta con ingesta automatizada para extraer datos directamente desde
+facturas en formato PDF o tickets de compra. Finalmente, la plataforma
+emite alertas predictivas cuando un gasto recurrente aumenta por encima
+de la inflación o cuando los gastos estimados para el mes siguiente,
+sumados a la deuda y al ajuste por inflación estimado, se acercan o
+superan el límite del presupuesto, facilitando la toma de decisiones
+financieras informadas en un contexto de inestabilidad constante.
+
+\capitulo{1 Descripción General}
+
+\subsection*{1.1 Descripción básica del negocio}
+\addcontentsline{toc}{subsection}{1.1 Descripción básica del negocio}
+
+El negocio consiste en el desarrollo y lanzamiento de una aplicación web
+de administración de finanzas personales, instalable en dispositivos
+móviles como aplicación web progresiva (PWA), operando bajo un modelo de
+Software como Servicio (SaaS). La propuesta de valor central reside en
+su fuerte integración con capacidades de Inteligencia Artificial (IA),
+diseñada para simplificar y automatizar la gestión financiera diaria del
+usuario. Específicamente, la IA se utilizará para interpretar mensajes
+en lenguaje natural, categorizar automáticamente transacciones y generar
+recomendaciones personalizadas basadas en patrones de comportamiento. El
+modelo de negocio es B2C (Business-to-Consumer), lo que implica una
+estrategia de venta directa a los consumidores finales a través de
+suscripciones o un modelo freemium, buscando proporcionar una
+herramienta intuitiva que reemplace métodos manuales o soluciones
+genéricas.
+
+\subsection*{1.2 Situación actual del negocio}
+\addcontentsline{toc}{subsection}{1.2 Situación actual del negocio}
+
+La situación actual del mercado de gestión de finanzas personales en
+Argentina se caracteriza por una marcada complejidad. El seguimiento de
+gastos y el control patrimonial son particularmente difíciles debido al
+volátil contexto macroeconómico del país. Los desafíos principales
+incluyen la alta y crónica inflación, que obliga a los usuarios a
+reajustar constantemente sus presupuestos y erosiona el valor real de
+los ahorros y los ingresos. Además, el régimen de la doble moneda (Peso
+Argentino y Dólar Estadounidense) es un factor crucial: los usuarios
+deben manejar activos y deudas en ambas monedas. En los últimos años
+surgieron aplicaciones locales que permiten registrar gastos mediante
+mensajería e inteligencia artificial y que contemplan ambas monedas; sin
+embargo, se concentran en el registro y la categorización de los
+movimientos, sin que la inflación aparezca como una variable central
+para planificar. Esto deja un espacio para una solución que ofrezca una
+visión financiera ajustada a la realidad económica argentina,
+facilitando la toma de decisiones informadas a pesar de la
+inestabilidad.
+
+En cuanto al estado del emprendimiento, el desarrollo del producto ya se
+encuentra en marcha y se cuenta con una base funcional de la aplicación.
+Desde la interfaz web es posible gestionar espacios de trabajo, cuentas
+y categorías, registrar movimientos y consultar la evolución de los
+saldos. Además, un chatbot basado en inteligencia artificial permite
+consultar y registrar información a partir de mensajes de texto, audios
+y documentos PDF; durante la etapa de desarrollo opera sobre Telegram.
+Actualmente, la aplicación se encuentra en etapa de pruebas, utilizada
+por el propio emprendedor, y se prevé abrirla a un primer grupo reducido
+de usuarios hacia fines de 2026.
+
+\subsection*{1.3 ¿Qué hace único a su negocio?}
+\addcontentsline{toc}{subsection}{1.3 ¿Qué hace único a su negocio?}
+
+Si bien existen aplicaciones de finanzas personales adaptadas al mercado
+argentino que permiten registrar gastos mediante mensajería e
+inteligencia artificial, el registro de movimientos por sí solo ya no
+constituye un diferencial. Lo que distingue a Quickexpense es la
+incorporación de la inflación como variable central de la gestión
+financiera: la plataforma alerta al usuario cuando un gasto recurrente
+aumenta por encima del índice de inflación, advierte cuando los gastos
+estimados para el mes siguiente ---sumados a la deuda pendiente,
+incluidas las cuotas de tarjetas de crédito, y al ajuste por inflación
+estimado--- se acercan al límite del presupuesto o lo superan, y muestra
+la variación en el valor de las tenencias según la inflación y el tipo
+de cambio. De este modo, el usuario no sólo sabe en qué gastó, sino
+cuánto le cuesta realmente sostener su nivel de gastos en un contexto de
+precios cambiantes.
+
+Adicionalmente, el fuerte enfoque en la implementación de inteligencia
+artificial y la facilidad de uso buscan reducir al mínimo la fricción
+que experimentan los usuarios en las aplicaciones tradicionales, que
+frecuentemente es la debilidad más fuerte de los sistemas de gestión de
+finanzas personales. En la encuesta realizada para este proyecto, el
+68\% de los participantes manifestó interés en tener más control sobre
+sus finanzas, pero sólo si resulta fácil y no le consume mucho tiempo.
+
+\subsection*{1.4 Describa los factores principales que usted considera
+harán exitoso su proyecto}
+\addcontentsline{toc}{subsection}{1.4 Describa los factores principales
+que usted considera harán exitoso su proyecto}
+
+Fundamentalmente, el proyecto depende de la precisión y los costos de
+las herramientas de Inteligencia Artificial utilizadas a lo largo de la
+aplicación. Si estas no son precisas, los usuarios podrían perder la
+confianza en el sistema. Si los costos que representa hacer uso de estas
+herramientas de forma significativa son demasiado altos, el modelo de
+negocio se vuelve inviable, dado que los usuarios deberían afrontar un
+costo de subscripción significativo o ver la función distintiva del
+sistema fuertemente limitada.
+
+Asimismo, es fundamental garantizar una buena satisfacción de usuario,
+lo que implica que el sistema debe ser confiable, tener una alta
+disponibilidad y estar probado correctamente.
+
+\subsection*{1.5 Estrategia: Definir, Misión, Visión y Propósito
+Estratégico}
+\addcontentsline{toc}{subsection}{1.5 Estrategia: Definir, Misión,
+Visión y Propósito Estratégico}
+
+La misión del proyecto es simplificar la gestión del patrimonio en
+Argentina mediante la automatización con Inteligencia Artificial.
+Mientras tanto, la visión es convertirse en la herramienta de gestión
+financiera estándar en el país.
+
+El propósito bajo el cual se inició el proyecto es devolver al usuario
+el control y la tranquilidad sobre su dinero en el contexto de
+incertidumbre e inestabilidad crónica que experimenta la región.
+
+La estrategia general del negocio es de enfoque con diferenciación:
+concentrarse en un segmento acotado ---jóvenes y adultos jóvenes
+afectados por la inflación y la economía bimonetaria, comenzando por la
+ciudad de Rosario--- y diferenciarse mediante herramientas que
+incorporan la inflación a la planificación financiera, con una carga de
+datos de mínima fricción a través de mensajería e inteligencia
+artificial.
+
+\subsection*{1.6 Identificación de la oportunidad de negocio}
+\addcontentsline{toc}{subsection}{1.6 Identificación de la oportunidad
+de negocio}
+
+La oportunidad de negocio surge principalmente de los dos factores que
+resultan obstáculos mayores a la hora de utilizar un sistema de gestión
+de finanzas personales. El primero es la falta de herramientas que
+incorporen el contexto local, y en particular la inflación, a la
+planificación financiera. La mayoría de las aplicaciones del ámbito se
+diseñaron en contextos económicos diferentes, por lo que al intentar
+aplicarlas en el contexto local los usuarios notan que existen varios
+aspectos en los que el sistema se ve limitado. En los últimos años
+surgieron alternativas locales que contemplan la doble moneda y permiten
+registrar gastos mediante mensajería; sin embargo, la inflación sigue
+sin ser una variable central de planificación. Ejemplos de esto son la
+falta de consideración de la inflación en presupuestos y planes de
+ahorro, la ausencia de alertas ante gastos que aumentan por encima del
+índice de precios y la dificultad para proyectar el peso de las cuotas y
+deudas pendientes en los meses siguientes.
+
+El segundo factor que lleva a la identificación de la oportunidad es la
+fricción que existe en la mayoría de aplicaciones, sistemas o métodos
+para gestionar gastos, ingresos y movimientos a nivel personal. Estos
+frecuentemente involucran el trabajo de cargar manualmente cada acción
+que se realiza en el momento o de forma conjunta cada cierto periodo de
+tiempo, lo que requiere un esfuerzo significativo por parte del usuario
+para asegurarse de que la información quede correctamente registrada.
+Versiones simplificadas que trabajan con números generales suelen perder
+precisión y no ofrecen al usuario una visión completa de su situación
+financiera. La encuesta realizada para este proyecto confirma este
+obstáculo: el 35\% de los participantes no registra ninguno de sus
+gastos, las herramientas más utilizadas son el cuaderno y las planillas
+de cálculo (42\% cada una), y el 81\% dedica menos de una hora por
+semana a administrar sus finanzas.
+
+\subsection*{1.7 Capacidades centrales}
+\addcontentsline{toc}{subsection}{1.7 Capacidades centrales}
+
+Una de las principales capacidades del emprendedor es el dominio de la
+arquitectura para software escalable. Se cuenta con la capacidad para
+implementar una arquitectura de monolito de forma tal que permita una
+fácil transición a una arquitectura de microservicios si el negocio
+demostrara requerirlo en un futuro.
+
+Adicionalmente, se cuenta con conocimiento en la integración profunda de
+modelos de inteligencia artificial en aplicaciones, haciendo uso de
+herramientas (tool calling) para permitir a un agente realizar
+operaciones complejas.
+
+Por otra parte, el emprendedor cuenta con experiencia en el sector
+financiero: actualmente trabaja en una empresa que desarrolla tecnología
+para un agente de liquidación y compensación (ALyC) y una billetera
+virtual, donde participa en el desarrollo de herramientas conectadas al
+mercado y de cotización. Esto le aporta una comprensión de las
+complejidades macroeconómicas locales y del funcionamiento de los
+productos financieros que utilizan los usuarios, que se complementa con
+el conocimiento de estrategias de gestión de finanzas personales.
+
+Finalmente, se realizaron consultas a profesionales del área de
+contabilidad sobre buenas prácticas para llevar una contabilidad limpia
+e íntegra, que se reflejan en el diseño del sistema, basado en el
+registro por partida doble.
+
+\subsection*{1.8 Propuesta de valor para el cliente}
+\addcontentsline{toc}{subsection}{1.8 Propuesta de valor para el
+cliente}
+
+Un asistente financiero multiplataforma que facilita el registro de
+datos mediante IA, ofreciendo herramientas nativas para la economía
+argentina como el seguimiento de la inflación y del tipo de cambio, el
+seguimiento de deudas y cuotas pendientes, y alertas que advierten
+cuando un gasto sube por encima de la inflación o cuando los gastos
+estimados se acercan al límite del presupuesto.
+
+\subsection*{1.9 Valores nucleares de la organización}
+\addcontentsline{toc}{subsection}{1.9 Valores nucleares de la
+organización}
+
+La filosofía de la empresa incluye la creencia de que la tecnología debe
+representar la menor fricción posible para el ser humano. Esto se
+traduce a que el usuario no debe realizar acciones tediosas y
+repetitivas, y que el sistema debe ser lo suficientemente inteligente
+para traducir lenguaje natural en instrucciones precisas.
+
+Adicionalmente, dada la sensibilidad de la información que se maneja en
+el sistema, la seguridad y la privacidad son primordiales para el
+proyecto. Esto se ve reflejado en la revisión de arquitecturas desde un
+punto de vista de seguridad y el compromiso de utilizar la información
+sensible únicamente para proveer las funciones prometidas al usuario.
+
+Finalmente, hay un enfoque en la transparencia al informar al usuario
+sobre el riesgo de utilizar herramientas de inteligencia artificial
+generativa, así como las implicancias de privacidad que conlleva.
+
+\subsection*{1.10 Enfoque e iniciativas estratégicas}
+\addcontentsline{toc}{subsection}{1.10 Enfoque e iniciativas
+estratégicas}
+
+La estrategia consiste en ofrecer el servicio mediante múltiples
+canales, principalmente en aplicaciones a las que el usuario ya esté
+acostumbrado. El canal principal será WhatsApp, la aplicación de
+mensajería más utilizada del país, cuya integración está prevista para
+el lanzamiento comercial; durante las etapas de desarrollo y prueba, el
+asistente opera sobre Telegram. De esta forma se busca hacer la
+transición a la aplicación lo más fácil posible.
+
+Al mismo tiempo, se busca diferenciarse tanto de los competidores
+extranjeros como de los locales desarrollando y refinando continuamente
+herramientas especializadas para el marco económico del país, en
+particular aquellas que incorporan la inflación a la planificación
+financiera, como el seguimiento de la inflación y del tipo de cambio y
+las alertas basadas en esos indicadores.
+
+Por último, el ingreso al mercado será gradual: una versión Alpha con un
+grupo reducido de usuarios hacia fines de 2026, una versión Beta a
+partir de febrero de 2027 y el lanzamiento previsto para junio de 2027.
+Cada etapa estará seguida de un ciclo de retroalimentación y mejora, de
+modo de validar la propuesta de valor antes de su comercialización.
+
+\subsection*{1.11 Áreas claves de resultados: identificar y justificar}
+\addcontentsline{toc}{subsection}{1.11 Áreas claves de resultados:
+identificar y justificar}
+
+Se cuentan con las siguientes áreas clave de resultados:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Costo operativo de API por usuario activo.} Tratándose de un
+  SaaS potenciado por IA, el consumo de tokens es el mayor gasto
+  variable. Si el costo de las llamadas a modelos de inteligencia
+  artificial supera el ingreso promedio de suscripción o el presupuesto
+  de marketing para usuarios gratuitos, el negocio quiebra.
+\item
+  \textbf{Usuarios activos diarios en plataformas de mensajería.} Se
+  debe tener en cuenta que la propuesta de valor central es reducir la
+  fricción del registro diario de gastos. Si los usuarios no interactúan
+  con el asistente de inteligencia artificial mediante las plataformas
+  de mensajería casi a diario, significa que la misma no resolvió la
+  fricción y que eventualmente abandonarán el producto.
+\item
+  \textbf{Tasa de conversión de freemium a premium.} Define si las
+  herramientas avanzadas generan suficiente valor real como para que el
+  usuario argentino esté dispuesto a pagar una suscripción en un mercado
+  que atraviesa una recesión.
+\item
+  \textbf{Latencia de respuesta del asistente.} Los usuarios esperan
+  respuestas inmediatas, si el procesamiento de mensajes tarda
+  demasiado, la experiencia de usuario se ve fuertemente degradada, lo
+  que puede llevarlos a abandonar el producto.
+\end{itemize}
+
+\subsection*{1.12 Ingreso al sector: estrategias de inserción}
+\addcontentsline{toc}{subsection}{1.12 Ingreso al sector: estrategias de
+inserción}
+
+Desde la perspectiva de las estrategias genéricas de Porter, el negocio
+adopta una estrategia de enfoque con diferenciación. Por un lado, se
+concentra en un segmento acotado: jóvenes y adultos jóvenes de 18 a 35
+años afectados por la economía bimonetaria y la alta inflación,
+comenzando por la ciudad de Rosario. Por otro lado, no busca competir
+por precio, sino diferenciarse mediante herramientas que incorporan la
+inflación a la planificación financiera, como las alertas ante gastos
+recurrentes que aumentan por encima del índice de precios o la
+proyección de los gastos del mes siguiente considerando la deuda
+pendiente y la inflación estimada.
+
+La estrategia de inserción está completamente enfocada en el nicho de
+usuarios afectados por el contexto económico regional. No se busca
+competir directamente contra alternativas globales por el mercado
+global; en cambio, el negocio se enfoca exclusivamente en usuarios
+afectados por la economía bimonetaria, la alta inflación y otras
+características de la economía local. Al resolver problemas locales que
+las aplicaciones globales ignoran, la plataforma crea una barrera de
+entrada natural contra competidores extranjeros. Frente a los
+competidores locales, que ya resuelven el registro de gastos mediante
+mensajería, la diferenciación se apoya en la profundidad del tratamiento
+de la inflación.
+
+Desde la perspectiva de Kotler, la plataforma adopta el rol de
+especialista de nicho. Las grandes empresas evitan los mercados con alta
+fricción regulatoria o volatilidad extrema porque no escalan fácilmente
+a nivel global. Al adoptar esta complejidad, el producto se especializa
+en un segmento desatendido.
+
+\capitulo{2 Análisis estratégico}
+
+\subcapitulo{2.1 Análisis de Contexto}
+
+\subsubsection*{2.1.1 Descripción del escenario local}
+\addcontentsline{toc}{subsubsection}{2.1.1 Descripción del escenario
+local}
+
+El lanzamiento se realizará inicialmente en la ciudad de Rosario,
+provincia de Santa Fe. Según el Censo Nacional 2022, el departamento
+Rosario cuenta con 1.348.725 habitantes, de los cuales 311.156 tienen
+entre 20 y 34 años, rango que constituye el núcleo del público objetivo.
+Si bien el servicio es digital y puede utilizarse desde cualquier punto
+del país, las acciones de captación se concentrarán en esta ciudad
+durante la primera etapa.
+
+El escenario se enmarca en el mercado argentino, caracterizado por un
+alto estrés financiero en la clase media y jóvenes profesionales. La
+necesidad de control patrimonial es alta, pero el tiempo y la educación
+financiera suelen ser bajos: Argentina se ubicó en el puesto 37 de 39
+economías en la medición de educación financiera realizada por el BCRA y
+CAF, y en la encuesta realizada para este proyecto los participantes
+calificaron con un promedio de 5,45 sobre 10 el control que sienten
+tener sobre sus finanzas, mientras que el 81\% declaró dedicarle menos
+de una hora por semana. Este escenario resulta propicio para un
+asistente automatizado.
+
+\subsubsection*{2.1.2 Factores económicos}
+\addcontentsline{toc}{subsubsection}{2.1.2 Factores económicos}
+
+Argentina atraviesa un escenario de desinflación incompleta combinado
+con una marcada debilidad de la actividad económica.
+
+En materia de precios, según el INDEC la inflación de agosto de 2026 fue
+de 1,7\% mensual, la más baja en catorce meses; sin embargo, acumula
+21,3\% en los primeros ocho meses del año y 33,5\% en los últimos doce.
+Los precios continúan variando de forma significativa mes a mes, lo que
+obliga a los hogares a revisar sus presupuestos con frecuencia y
+erosiona el poder adquisitivo de los ingresos y de los ahorros en pesos.
+
+En cuanto a la actividad, luego de un crecimiento del PBI de 4,4\% en
+2025, la economía ingresó en una recesión técnica durante 2026: el PBI
+del segundo trimestre cayó 0,6\% respecto del primero, y el Estimador
+Mensual de Actividad Económica (EMAE) de julio registró una caída de
+2,9\% mensual desestacionalizada, la mayor desde abril de 2020. El
+consumo privado se contrajo 2,4\% en el segundo trimestre y la
+desocupación ascendió a 7,9\%. Las proyecciones privadas de crecimiento
+para 2026 se ubican entre 1,9\% y 2,4\%.
+
+En materia cambiaria, desde abril de 2025 rige un esquema de flotación
+entre bandas cuyos límites, desde enero de 2026, se actualizan según la
+inflación. A comienzos de octubre de 2026 el dólar mayorista cotizaba en
+torno a \$1.520, por debajo del techo de la banda (\$1.924,62), y la
+brecha entre el tipo de cambio oficial, los dólares financieros (MEP y
+contado con liquidación) y el informal era mínima. Aun así, la
+coexistencia de varias cotizaciones y la experiencia de devaluaciones
+pasadas mantienen al dólar como la principal referencia de valor para
+los ahorristas.
+
+Por último, los servicios digitales prestados desde el exterior que se
+pagan en pesos tienen un recargo cercano al 53\% (21\% de IVA, 30\% de
+percepción de Ganancias o Bienes Personales y alrededor de 2\% de
+Ingresos Brutos). Esto encarece las suscripciones de aplicaciones
+extranjeras cobradas en dólares frente a alternativas locales cobradas
+en pesos. En sentido inverso, los servicios de inteligencia artificial
+que utiliza la plataforma se facturan en dólares, lo que expone su
+estructura de costos a las variaciones del tipo de cambio.
+
+\subsubsection*{2.1.3 Factores políticos}
+\addcontentsline{toc}{subsubsection}{2.1.3 Factores políticos}
+
+A nivel mundial existe una creciente tendencia a regular el uso de datos
+personales y de la inteligencia artificial, y Argentina no es ajena a
+ella.
+
+El tratamiento de datos personales en el país se rige por la Ley 25.326
+de Protección de Datos Personales, sancionada en el año 2000, cuya
+autoridad de aplicación es la Agencia de Acceso a la Información Pública
+(AAIP). La antigüedad de esta norma motivó la presentación, durante
+2026, de proyectos de reforma integral en la Cámara de Diputados
+(expedientes 1751-D-2026 y 3397-D-2026), inspirados en el anteproyecto
+elaborado por la AAIP y alineados con estándares internacionales como el
+Reglamento General de Protección de Datos de la Unión Europea. Estas
+iniciativas incorporan regulaciones específicas sobre inteligencia
+artificial y un esquema de obligaciones según el nivel de riesgo del
+tratamiento de datos. En paralelo, se presentaron proyectos para regular
+la inteligencia artificial con un enfoque basado en riesgos, mientras
+que el Poder Ejecutivo impulsa un marco orientado a promover la
+actividad. A fines de septiembre de 2026 ninguno de estos proyectos
+contaba con dictamen.
+
+En el ámbito financiero, el Decreto 353/2025 creó el Sistema de Finanzas
+Abiertas, que permitirá a las personas compartir, con su consentimiento
+expreso, su información financiera con terceros mediante interfaces de
+programación (APIs). El Banco Central, como autoridad de aplicación,
+todavía no publicó los estándares técnicos ni un cronograma de
+implementación.
+
+Para el negocio, este marco implica, por un lado, la necesidad de
+diseñar el tratamiento de los datos financieros de los usuarios
+cumpliendo la normativa vigente y anticipando requisitos más exigentes,
+como el consentimiento informado, la transparencia en el uso de
+inteligencia artificial y la evaluación de riesgos. Por otro lado, abre
+una oportunidad a mediano plazo: si el sistema de finanzas abiertas se
+implementa, la plataforma podría importar automáticamente los
+movimientos de bancos y billeteras virtuales.
+
+\subsubsection*{2.1.4 Factores Tecnológicos}
+\addcontentsline{toc}{subsubsection}{2.1.4 Factores Tecnológicos}
+
+El contexto tecnológico es favorable para un asistente financiero
+conversacional basado en inteligencia artificial.
+
+En cuanto a la conectividad, a fines de 2025 Argentina contaba con 41,6
+millones de usuarios de internet, alrededor del 90\% de la población, y
+con 66,6 millones de conexiones móviles activas. El teléfono celular es
+la tecnología de uso más extendido: lo utiliza entre el 94\% y el 96\%
+de las personas de 18 a 64 años.
+
+La mensajería instantánea es el principal canal digital del país:
+WhatsApp es utilizado por el 93,3\% de la audiencia en línea y concentra
+alrededor del 96\% del uso de aplicaciones de mensajería, mientras que
+Telegram alcanza una participación cercana al 4\%.
+
+Por su parte, la inteligencia artificial generativa ya forma parte de la
+vida cotidiana de una porción significativa de la población. Según la
+Encuesta Nacional sobre Adopción de IA de la Universidad Torcuato Di
+Tella (agosto-septiembre de 2025), el 45,5\% de los adultos conectados
+la utiliza con fines personales, proporción que asciende al 63,9\% en la
+Generación Z y al 61,7\% entre quienes completaron estudios
+universitarios. Al mismo tiempo, el costo de utilizar estos modelos
+mediante APIs continúa reduciéndose, lo que mejora la viabilidad de
+integrarlos de forma intensiva en productos de consumo masivo.
+
+Como limitación, los principales bancos y billeteras virtuales del país
+no ponen a disposición los datos financieros de sus clientes mediante
+APIs abiertas, por lo que la información debe cargarse manualmente o
+extraerse de documentos como resúmenes y comprobantes. El Sistema de
+Finanzas Abiertas creado en 2025 podría revertir esta situación a
+mediano plazo.
+
+\subsubsection*{2.1.5 Descripción del escenario: escenario--meta}
+\addcontentsline{toc}{subsubsection}{2.1.5 Descripción del escenario:
+escenario--meta}
+
+El escenario meta es la convergencia de una economía que exige
+hiper-vigilancia del dinero diario con la explosión de la Inteligencia
+Artificial capaz de realizar esa vigilancia de forma autónoma. El
+desarrollo del negocio florecerá mientras persista la inestabilidad
+macroeconómica y los LLMs sigan reduciendo sus costos de API.
+
+Los factores analizados afectan al desarrollo del negocio de la
+siguiente manera:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Factores económicos.} La inflación, aun en desaceleración,
+  sostiene la necesidad de controlar los gastos y de medir su evolución
+  frente a los precios, lo que refuerza la propuesta diferencial del
+  producto. En cambio, la recesión y la caída del consumo limitan la
+  disposición a pagar, lo que justifica un modelo freemium con un plan
+  gratuito útil por sí mismo. Los costos de inteligencia artificial,
+  facturados en dólares, exponen el margen a las variaciones del tipo de
+  cambio, aunque la estabilidad cambiaria actual reduce ese riesgo en el
+  corto plazo. Por último, el recargo impositivo sobre las suscripciones
+  a aplicaciones extranjeras favorece a una alternativa local cobrada en
+  pesos.
+\item
+  \textbf{Factores políticos.} La normativa de protección de datos
+  personales y su posible reforma obligan a diseñar desde el inicio un
+  tratamiento transparente y seguro de la información financiera de los
+  usuarios. A mediano plazo, la implementación del Sistema de Finanzas
+  Abiertas permitiría automatizar la importación de movimientos desde
+  bancos y billeteras virtuales.
+\item
+  \textbf{Factores tecnológicos.} El predominio de WhatsApp define el
+  canal principal del lanzamiento, y la alta adopción de inteligencia
+  artificial entre los jóvenes reduce la barrera de entrada a un
+  asistente conversacional. Mientras los bancos no ofrezcan acceso
+  abierto a los datos, la carga mediante lenguaje natural y documentos
+  seguirá siendo necesaria, que es precisamente el problema que resuelve
+  la plataforma.
+\end{itemize}
+
+\subsubsection*{2.1.6 Análisis sectorial. Definición de Oportunidades y
+Amenazas del negocio}
+\addcontentsline{toc}{subsubsection}{2.1.6 Análisis sectorial.
+Definición de Oportunidades y Amenazas del negocio}
+
+El sector de las aplicaciones de finanzas personales en Argentina se
+encuentra en una etapa de crecimiento, con la aparición en los últimos
+años de varias propuestas locales que utilizan inteligencia artificial y
+aplicaciones de mensajería para simplificar el registro de gastos. Se
+trata de un sector todavía fragmentado, sin un actor dominante, en el
+que conviven aplicaciones globales, startups locales, las herramientas
+incorporadas por las billeteras virtuales y métodos manuales como las
+planillas de cálculo.
+
+\textbf{Oportunidades}
+
+\begin{itemize}
+\tightlist
+\item
+  La persistencia de la inflación y la creciente demanda por optimizar
+  el dinero frente a la crisis, en un mercado donde las herramientas
+  disponibles no incorporan la inflación como variable de planificación.
+\item
+  La rápida adopción de la inteligencia artificial generativa entre los
+  jóvenes, que utilizan cada vez más asistentes conversacionales para
+  resolver tareas cotidianas.
+\item
+  El predominio de WhatsApp como canal digital cotidiano, que permite
+  ofrecer el servicio dentro de una aplicación que el usuario ya
+  utiliza.
+\item
+  El recargo impositivo sobre los servicios digitales del exterior, que
+  encarece a los competidores globales frente a una alternativa local
+  cobrada en pesos.
+\item
+  A mediano plazo, el Sistema de Finanzas Abiertas, que permitiría
+  importar automáticamente los movimientos de bancos y billeteras.
+\end{itemize}
+
+\textbf{Amenazas}
+
+\begin{itemize}
+\tightlist
+\item
+  La presencia de competidores locales ya establecidos, con propuestas
+  de valor similares en la integración de inteligencia artificial y
+  WhatsApp y con una base de usuarios consolidada.
+\item
+  Que gigantes del sector Fintech local decidan desarrollar e integrar
+  funciones similares de forma nativa en sus aplicaciones, eliminando
+  motivos para utilizar una aplicación dedicada.
+\item
+  La recesión y la caída del consumo, que reducen la disposición a pagar
+  por una suscripción.
+\item
+  La dependencia de plataformas de terceros: desde enero de 2026, Meta
+  prohíbe los chatbots de inteligencia artificial de propósito general
+  en la API de WhatsApp Business; si bien los asistentes orientados a
+  tareas específicas siguen permitidos, futuros cambios en sus políticas
+  o en sus precios podrían afectar al canal principal.
+\item
+  Los cambios regulatorios en materia de datos personales e inteligencia
+  artificial, que podrían imponer nuevas obligaciones de cumplimiento.
+\end{itemize}
+
+\subcapitulo{2.2 Análisis de la Competencia}
+
+\subsubsection*{2.2.1 Principales competidores directos}
+\addcontentsline{toc}{subsubsection}{2.2.1 Principales competidores
+directos}
+
+Los principales competidores consisten en servicios globales genéricos,
+aplicaciones locales con inteligencia artificial, las herramientas
+incorporadas por las billeteras virtuales y sustitutos como planillas de
+cálculo.
+
+Dentro de los servicios globales genéricos se encuentran algunos como
+Wallet, Spendee e YNAB, que poseen interfaces pulidas, pero tienen una
+utilidad limitada en Argentina al no comprender pagos en cuotas, la
+inflación o la multiplicidad de los tipos de cambio. Además, se cobran
+en dólares, por lo que al pagarse en pesos su precio aumenta alrededor
+de un 53\% por impuestos.
+
+El grupo más cercano a la propuesta de este proyecto son las
+aplicaciones locales que permiten registrar gastos mediante WhatsApp con
+inteligencia artificial. La más completa es Gasti, que interpreta
+mensajes de texto, audios, imágenes y documentos PDF, maneja pesos,
+dólares y criptomonedas, y ofrece gastos recurrentes, presupuestos con
+alertas, metas de ahorro, cuentas compartidas e integraciones con
+Mercado Pago y otras entidades. Declara más de 11.000 usuarios activos y
+cobra sus planes pagos en pesos a través de Mercado Pago. Otras
+alternativas similares son Piggy, que contempla el dólar blue y MEP y
+las cuotas de tarjetas, QueWallet, Chanchito, Finy y AI Money.
+
+Las billeteras virtuales, como Mercado Pago y Naranja X, incorporan
+herramientas básicas de organización, como la separación del dinero en
+compartimentos (``jarras'' o ``frascos''), aunque limitadas a los
+movimientos de su propia plataforma.
+
+Finalmente, las alternativas como planillas de cálculo o libretas de
+papel son altamente personalizables, pero tienen un nivel extremo de
+fricción para la carga manual de datos. Aun así, son las herramientas
+más utilizadas por los participantes de la encuesta realizada para este
+proyecto (42\% cada una).
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1200}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1600}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1800}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.3400}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Competidor
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Tipo
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Canales
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Inflación como variable de planificación
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Precio
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+YNAB & Global & App / web & No & USD 14,99/mes o USD 109/año, más
+impuestos \\
+Spendee & Global & App & No & USD 5,99/mes o USD 35,99/año, más
+impuestos \\
+Wallet (BudgetBakers) & Global & App / web & No & Desde ≈ €4,49/mes, más
+impuestos \\
+Gasti & Local & WhatsApp, iOS & No & Gratis; Pro USD 6,99/mes; Premium
+USD 9,99/mes (cobro en pesos) \\
+Piggy & Local & App + WhatsApp & No & Gratis + planes en pesos \\
+Mercado Pago / Naranja X & Billetera virtual & App propia & No &
+Gratis \\
+Planillas de cálculo / cuaderno & Sustituto & --- & Manual & Gratis \\
+\end{longtable}
+}
+
+\subsubsection*{2.2.2 Análisis de cadena de valor}
+\addcontentsline{toc}{subsubsection}{2.2.2 Análisis de cadena de valor}
+
+El valor de la plataforma no se genera mediante el almacenamiento de los
+datos, si no con la traducción e interpretación. La cadena de valor
+central reside en la ingesta automatizada de datos no estructurados a
+través de IA, el procesamiento y enriquecimiento local de datos, y la
+devolución de reportes proactivos en tiempo real al usuario.
+
+\subsubsection*{2.2.3 Definición de Factores Críticos de Éxito (FCE)}
+\addcontentsline{toc}{subsubsection}{2.2.3 Definición de Factores
+Críticos de Éxito (FCE)}
+
+Para lograr que el usuario opte por usar el servicio propio se debe
+garantizar la precisión de las herramientas de IA; las herramientas que
+se le ofrecen al LLM no pueden fallar al registrar montos, un error
+pequeño podría romper la confianza del usuario.
+
+Adicionalmente se debe mantener la disponibilidad multicanal de baja
+latencia, asegurándose de que el chatbot responda de forma rápida y que
+la infraestructura soporte el uso del sistema tanto via aplicaciones de
+mensajería como la propia.
+
+Finalmente, debe haber una actualización dinámica del contexto
+macroeconómico. Las APIs que alimentan los tipos de cambio y los índices
+de inflación deben ser precisas y estar siempre en línea.
+
+\subsubsection*{2.2.4 Fortalezas y debilidades del negocio}
+\addcontentsline{toc}{subsubsection}{2.2.4 Fortalezas y debilidades del
+negocio}
+
+Las principales fortalezas del negocio son el diseño hiperlocalizado de
+la lógica financiera, que incorpora la inflación a la planificación de
+gastos, presupuestos y deudas; la reducción a casi cero de la fricción
+de uso gracias al procesamiento de lenguaje natural; una base contable
+rigurosa, sustentada en el registro por partida doble; y la experiencia
+del emprendedor en el desarrollo de tecnología para el mercado
+financiero local. A esto se suma una estructura de costos fijos muy baja
+en la etapa inicial.
+
+La debilidad más significativa es la dependencia estructural de
+proveedores de terceros de infraestructura de IA (como Anthropic y
+OpenAI), exponiendo el margen de ganancia a fluctuaciones en los costos
+de tokens utilizados para responder a solicitudes de usuarios. A esto se
+suman los recursos limitados de un equipo unipersonal y el ingreso
+tardío a un mercado en el que ya operan competidores locales con una
+base de usuarios establecida.
+
+\capitulo{3 Análisis FODA}
+
+\subsection*{3.1 Cuadro FODA}
+\addcontentsline{toc}{subsection}{3.1 Cuadro FODA}
+
+\textbf{Fortalezas (internas):}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Hiper-localización:} lógica financiera adaptada nativamente a
+  la economía argentina, que incorpora la inflación a la planificación
+  (alertas ante gastos que superan la inflación, proyección del
+  presupuesto con inflación estimada, seguimiento de deudas y cuotas,
+  seguimiento de la inflación y del tipo de cambio).
+\item
+  \textbf{Fricción mínima vía IA:} automatización del registro de gastos
+  a través de lenguaje natural (texto, audios, imágenes y documentos)
+  mediante un chatbot de mensajería.
+\item
+  \textbf{Conocimiento técnico cruzado:} dominio tanto del desarrollo de
+  software (integración de IA, arquitecturas escalables) como del
+  ecosistema financiero local, a partir de la experiencia del
+  emprendedor en tecnología para un agente de liquidación y compensación
+  y una billetera virtual.
+\item
+  \textbf{Base contable rigurosa:} registro por partida doble, diseñado
+  siguiendo buenas prácticas consultadas con profesionales de la
+  contabilidad.
+\item
+  \textbf{Costos fijos bajos:} la operación inicial requiere alrededor
+  de USD 80 mensuales.
+\end{itemize}
+
+\textbf{Debilidades (internas):}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Estructura de costos dolarizada:} los costos variables
+  dependen del consumo de tokens de APIs de terceros (como OpenAI o
+  Anthropic), lo cual presenta un riesgo frente a devaluaciones locales.
+\item
+  \textbf{Recursos limitados:} el desarrollo, el mantenimiento técnico y
+  el soporte dependen de un equipo unipersonal, lo que limita la
+  velocidad de escalabilidad técnica.
+\item
+  \textbf{Ingreso tardío:} el producto todavía no fue lanzado, mientras
+  que existen competidores locales con una base de usuarios establecida.
+\item
+  \textbf{Canal principal en desarrollo:} la integración con WhatsApp
+  todavía no está implementada.
+\end{itemize}
+
+\textbf{Oportunidades (externas):}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Adopción temprana de IA:} un público joven que está
+  normalizando rápidamente el uso de asistentes conversacionales para
+  resolver tareas cotidianas (63,9\% de uso en la Generación Z).
+\item
+  \textbf{Necesidad de control financiero:} la inflación (33,5\%
+  interanual en agosto de 2026) obliga a los usuarios a llevar un
+  control estricto de su patrimonio para evitar la pérdida de poder
+  adquisitivo.
+\item
+  \textbf{Predominio de WhatsApp:} alrededor del 96\% de la mensajería
+  instantánea del país se realiza por esta aplicación.
+\item
+  \textbf{Recargo impositivo a las aplicaciones extranjeras:} cerca del
+  53\% al pagarlas en pesos.
+\item
+  \textbf{Finanzas abiertas:} la futura implementación del sistema
+  permitiría importar movimientos automáticamente.
+\end{itemize}
+
+\textbf{Amenazas (externas):}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Competencia directa establecida:} startups locales con
+  propuestas de valor similares en la integración de IA y WhatsApp (por
+  ejemplo, Gasti, con más de 11.000 usuarios declarados, o Piggy).
+\item
+  \textbf{Evolución de las billeteras virtuales:} el riesgo de que
+  actores masivos (como Naranja X con su función de ``Jarras'' o Mercado
+  Pago) desarrollen e integren herramientas de presupuestación más
+  complejas o asistentes nativos en sus plataformas.
+\item
+  \textbf{Recesión:} la caída del consumo reduce la disposición a pagar
+  suscripciones.
+\item
+  \textbf{Dependencia de plataformas de terceros:} cambios en las
+  políticas o precios de WhatsApp Business o de los proveedores de IA.
+\item
+  \textbf{Cambios regulatorios} en materia de datos personales e
+  inteligencia artificial.
+\end{itemize}
+
+\subsection*{3.2 Análisis de las Fortalezas, Oportunidades, Debilidades
+y Amenazas}
+\addcontentsline{toc}{subsection}{3.2 Análisis de las Fortalezas,
+Oportunidades, Debilidades y Amenazas}
+
+El cruce de estas variables revela una estrategia clara de mitigación y
+ataque, que puede organizarse en cuatro tipos de estrategias.
+
+\textbf{Estrategias ofensivas (fortalezas y oportunidades).} La
+hiper-localización y la fricción mínima permiten aprovechar la necesidad
+de control financiero generada por la inflación y la adopción de la
+inteligencia artificial entre los jóvenes. La integración con WhatsApp
+para el lanzamiento permite llegar al público en el canal que ya utiliza
+a diario, y el cobro en pesos posiciona al producto frente a las
+aplicaciones extranjeras, encarecidas por los impuestos.
+
+\textbf{Estrategias defensivas (fortalezas y amenazas).} Frente a la
+amenaza de las billeteras virtuales establecidas, que ofrecen
+herramientas básicas como la separación de dinero en ``jarras'', el
+proyecto opone su principal fortaleza: la ``fricción cero''. Las
+billeteras exigen procesos manuales y se limitan a sus propios
+movimientos, mientras que este sistema actúa como un asistente autónomo
+y proactivo, creando una barrera defensiva basada en la extrema
+comodidad del usuario. Frente a los competidores locales que ya
+registran gastos por mensajería, la defensa es la profundidad del
+tratamiento de la inflación.
+
+\textbf{Estrategias adaptativas (debilidades y oportunidades).} La
+principal debilidad del proyecto, los costos dolarizados de las APIs de
+IA, se contrarresta mediante la implementación de un modelo Freemium
+estricto, que limita las interacciones diarias para usuarios gratuitos y
+reserva el acceso ilimitado o a modelos de razonamiento más complejos
+exclusivamente para los usuarios de pago. A futuro, el conocimiento
+técnico permite contemplar una migración hacia modelos open-source
+locales para reducir dependencias. Las limitaciones de un equipo
+unipersonal se compensan con un lanzamiento gradual (Alpha, Beta y
+lanzamiento), que acota la cantidad de usuarios en cada etapa.
+
+\textbf{Estrategias de supervivencia (debilidades y amenazas).} El
+ingreso tardío frente a competidores establecidos y la recesión se
+enfrentan con una inserción acotada a un nicho geográfico (Rosario) y
+con costos fijos mínimos, que permiten sostener la operación sin
+financiamiento externo mientras se valida la propuesta.
+
+\subsection*{3.3 Conclusión: Atractivo de la Industria, Fortalezas del
+Negocio}
+\addcontentsline{toc}{subsection}{3.3 Conclusión: Atractivo de la
+Industria, Fortalezas del Negocio}
+
+La industria de las Finanzas Personales (PFM) en Argentina presenta un
+alto atractivo debido a la ineficacia de las soluciones tradicionales
+frente a la volatilidad macroeconómica y a la persistencia de la
+inflación. Al mismo tiempo, se trata de un sector en crecimiento en el
+que ya operan propuestas locales basadas en inteligencia artificial y
+mensajería, por lo que el atractivo no reside en la novedad del canal,
+sino en la capacidad de resolver mejor las necesidades específicas del
+contexto argentino.
+
+La fortaleza central del negocio es su capacidad para resolver la
+``paradoja del usuario moderno'': la necesidad de llevar un control
+exhaustivo y casi obsesivo del dinero, pero con una nula disposición a
+invertir tiempo en la carga manual de datos. Al posicionar a la
+Inteligencia Artificial como el puente entre el control total y el
+esfuerzo nulo, y al incorporar la inflación como variable central de
+planificación, el proyecto posee una ventaja competitiva altamente
+valorada en un mercado inflacionario.
+
+\capitulo{4 Segmentación}
+
+\subsection*{4.1 Segmentación de consumidores y/o Negocios}
+\addcontentsline{toc}{subsection}{4.1 Segmentación de consumidores y/o
+Negocios}
+
+El modelo de negocio es estrictamente B2C (Business-to-Consumer),
+orientado a usuarios individuales finales. Si bien el foco está puesto
+en la gestión de las finanzas personales de cada usuario, la plataforma
+admite espacios de trabajo compartidos, lo que permite que varias
+personas colaboren en un mismo seguimiento financiero.
+
+\subsection*{4.2 Identificación de grupos diferenciados de consumidores}
+\addcontentsline{toc}{subsection}{4.2 Identificación de grupos
+diferenciados de consumidores}
+
+\textbf{Factores Demográficos y Socioculturales:} El público objetivo
+principal está compuesto por jóvenes y adultos jóvenes (Generación Z y
+Millennials más jóvenes, de 18 a 35 años). Dentro de este rango se
+distinguen dos grupos: quienes se encuentran en la etapa de transición
+hacia la independencia económica o gestionando sus primeros ingresos
+estables, y profesionales ya establecidos en su actividad, con una
+estructura financiera más desarrollada que requiere un seguimiento más
+exhaustivo.
+
+\textbf{Ubicación geográfica:} en la primera etapa, el público se
+concentra en la ciudad de Rosario, cuyo departamento cuenta con 311.156
+habitantes de entre 20 y 34 años según el Censo 2022.
+
+\textbf{Nivel educativo y socioeconómico:} la adopción de inteligencia
+artificial es mayor entre quienes tienen educación superior (61,7\%
+entre universitarios completos, frente a 29,5\% entre quienes no
+completaron el secundario), por lo que el público con estudios
+terciarios o universitarios, completos o en curso, es el más receptivo a
+la propuesta. En la encuesta realizada para este proyecto, el 71\% de
+los participantes cursa estudios universitarios, el 45\% no trabaja y el
+52\% vive con su familia sin afrontar gastos en necesidades básicas, lo
+que indica que el primer grupo tiene una capacidad de pago limitada y
+gastos de menor complejidad.
+
+\textbf{Factores de Comportamiento Tecnológico:} Son individuos nativos
+digitales que ya han incorporado la Inteligencia Artificial generativa a
+su vida académica o laboral (el 63,9\% de la Generación Z la utiliza con
+fines personales), y que utilizan plataformas de mensajería,
+principalmente WhatsApp, como su centro operativo digital diario.
+
+\subsection*{4.3 ¿Quiénes son los potenciales usuarios/ compradores del
+negocio?}
+\addcontentsline{toc}{subsection}{4.3 ¿Quiénes son los potenciales
+usuarios/ compradores del negocio?}
+
+El usuario objetivo principal es aquel joven que recién se introduce en
+el mundo de la gestión patrimonial. Al no tener un sistema predefinido
+(como complejas planillas de Excel heredadas o años de uso de otra
+plataforma), representan un mercado ``virgen'' más fácil de captar.
+
+Un segundo grupo está conformado por profesionales ya establecidos en su
+actividad, con una estructura financiera más desarrollada. Para este
+grupo, el valor de la plataforma reside en reducir el esfuerzo que
+implica mantener un seguimiento exhaustivo de su situación financiera.
+
+El comprador (aquel que convierte del modelo gratuito al modelo Premium)
+se define por la intensidad de uso: es el usuario que encuentra un valor
+indispensable en el asistente conversacional, alcanza rápidamente su
+límite de interacciones gratuitas diarias y está dispuesto a pagar una
+suscripción para desbloquear el uso ilimitado y el razonamiento avanzado
+sin fricciones. En la encuesta realizada para este proyecto, el 52\% de
+los participantes manifestó estar dispuesto a pagar una suscripción
+mensual por una herramienta que le ahorrara el trabajo manual de
+registro, proporción que asciende al 59\% entre quienes trabajan y al
+70\% entre quienes están dispuestos a esforzarse por mejorar el control
+de sus finanzas. Se trata de una intención declarada, que suele ser
+superior a la conversión efectiva.
+
+\subsection*{4.4 Pautas de comportamiento esperado de cada segmento}
+\addcontentsline{toc}{subsection}{4.4 Pautas de comportamiento esperado
+de cada segmento}
+
+El perfil no se segmenta por sexo ni por un nivel de ingreso específico.
+Se proyecta un perfil de usuario con una necesidad de ``micro-control
+obsesivo'', que desea saber exactamente adónde va cada centavo, pero
+cuya tolerancia a la fricción de uso es casi nula. El comportamiento
+esperado consiste en sesiones de uso extremadamente cortas
+(micro-interacciones) múltiples veces al día. El usuario no abrirá la
+aplicación para navegar por menús; en su lugar, enviará un audio rápido
+o una fotografía de un ticket al chatbot inmediatamente después de
+realizar un consumo. El esfuerzo cognitivo del usuario se reduce a cero,
+trasladando la carga de la categorización, el cálculo de cuotas y el
+impacto inflacionario directamente a la inteligencia artificial.
+
+La encuesta realizada para este proyecto respalda este perfil. El 81\%
+de los participantes dedica menos de una hora por semana a sus finanzas
+y el 68\% querría tener más control, pero sólo si resulta fácil y no le
+consume tiempo. La principal razón de uso esperada es saber con
+exactitud cuánto se gasta por mes y en qué (81\%), seguida por conocer
+la rentabilidad de las inversiones (48\%), gestionar el ahorro para
+alcanzar objetivos (45\%) y armar un presupuesto con mayor confianza
+(42\%). La mayoría utiliza entre dos y tres cuentas por semana (65\%), y
+la carga de gastos mediante WhatsApp resulta igual o más útil que la
+anotación manual para el 81\%.
+
+Se espera un comportamiento diferenciado entre los dos grupos del
+segmento. En el grupo más joven predominan los gastos de menor
+complejidad: el 61\% no utiliza tarjeta de crédito y la mediana de uso
+de moneda extranjera es de 1 sobre 10, por lo que su uso se centrará en
+el registro y la categorización de gastos. En el grupo de profesionales
+establecidos se espera un uso más intensivo de las funciones
+diferenciales, como el seguimiento de deudas y cuotas, el presupuesto
+ajustado por inflación y el valor de las tenencias en distintas monedas.
+
+\capitulo{5 Plan de Acción}
+
+\subsection*{5.1 Programas generales de acción}
+\addcontentsline{toc}{subsection}{5.1 Programas generales de acción}
+
+La estrategia formulada en los capítulos anteriores se lleva a la
+práctica mediante seis programas generales de acción, que se desarrollan
+de forma gradual a lo largo de las etapas Alpha, Beta y lanzamiento.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Programa de desarrollo del producto.} Completar el producto
+  mínimo viable y evolucionarlo en cada etapa, priorizando el registro
+  de movimientos mediante lenguaje natural y las funciones diferenciales
+  que incorporan la inflación a la planificación financiera.
+\item
+  \textbf{Programa de validación con usuarios.} Abrir el producto a
+  grupos acotados de usuarios: menos de 20 en la versión Alpha y entre
+  20 y 50 en la versión Beta. Cada etapa se cierra con un ciclo de
+  retroalimentación (entrevistas y análisis de uso) que define los
+  refinamientos y las nuevas funciones de la siguiente. La convocatoria
+  inicial parte de los participantes de la encuesta que manifestaron
+  interés en el proyecto.
+\item
+  \textbf{Programa de integración de canales.} Incorporar WhatsApp como
+  canal principal antes del lanzamiento comercial, ajustando el
+  asistente a las políticas de la plataforma. Durante las etapas de
+  prueba el asistente opera sobre Telegram.
+\item
+  \textbf{Programa de lanzamiento y captación.} Lanzar el producto en
+  junio de 2027, con acciones de comunicación concentradas en la ciudad
+  de Rosario.
+\item
+  \textbf{Programa de monetización.} Activar el modelo freemium en el
+  lanzamiento: un plan gratuito con límites de uso y un plan pago con
+  acceso ilimitado y funciones avanzadas.
+\item
+  \textbf{Programa de operación y control de costos.} Sostener la
+  infraestructura sobre un servidor dedicado propio y monitorear el
+  costo de inteligencia artificial por usuario activo, principal costo
+  variable del negocio.
+\end{enumerate}
+
+El proyecto se financia íntegramente con capital propio. La inversión
+es, principalmente, el tiempo de desarrollo del emprendedor; los costos
+monetarios estimados para la etapa inicial son de alrededor de USD 30
+mensuales por el servidor dedicado y USD 50 mensuales en consumo de
+modelos de inteligencia artificial.
+
+\subsection*{5.2 Programas específicos de acción}
+\addcontentsline{toc}{subsection}{5.2 Programas específicos de acción}
+
+El siguiente cronograma detalla las acciones previstas desde la etapa
+actual de desarrollo hasta el cierre del primer año de operación
+comercial.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2200}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1400}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.4200}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2200}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Etapa
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Período
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Acciones principales
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Hito / entregable
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Desarrollo del MVP & Octubre a diciembre de 2026 & Completar las
+funciones de la versión Alpha (detalladas más abajo). Preparar el
+entorno de producción. Convocar a los usuarios de la versión Alpha. &
+MVP funcional \\
+Alpha & Fines de 2026 & Apertura a menos de 20 usuarios, convocados
+entre los participantes de la encuesta que dejaron un contacto. &
+Primeros usuarios externos \\
+Retroalimentación 1 & Enero de 2027 & Entrevistas y análisis de uso.
+Corrección de errores, refinamiento de funciones y desarrollo de nuevas
+funciones. & Versión Beta \\
+Beta & Febrero de 2027 & Apertura a un grupo de 20 a 50 usuarios. &
+Versión pre-lanzamiento \\
+Retroalimentación 2 y pulido & Marzo a mayo de 2027 & Refinamiento y
+pulido. Integración del canal WhatsApp y desarrollo de las funciones
+previstas para el lanzamiento. Implementación del plan pago y
+preparación de la comunicación del lanzamiento. & Versión de
+lanzamiento \\
+Lanzamiento & Junio de 2027 & Lanzamiento comercial en Rosario y
+activación del modelo freemium. & Producto disponible al público \\
+Primer año de operación & Junio de 2027 a mayo de 2028 & Acciones de
+captación en Rosario, seguimiento trimestral de las metas comerciales
+(6.1) y mejora continua del producto. & Al menos 100 usuarios
+registrados \\
+\end{longtable}
+}
+
+Las funciones del producto se incorporan de forma escalonada según la
+etapa:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2200}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.7800}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Etapa
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Funciones
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Alpha (fines de 2026) & \textbf{Ya disponibles:} cuentas, movimientos y
+categorías; chatbot con mensajes de texto, audios y documentos PDF;
+espacios de trabajo compartidos con roles; evolución de saldos; cuentas
+en distintas monedas. \textbf{A incorporar:} interpretación de fotos de
+tickets; categorización automática de gastos; invitación de miembros por
+email; seguimiento mensual de la inflación; seguimiento del tipo de
+cambio del dólar; reportes mensuales de gastos; gastos recurrentes;
+presupuesto mensual asistido por inteligencia artificial; metas de
+ahorro; deuda de tarjetas de crédito y cuotas pendientes; otras deudas
+(con familiares o amigos); instalación en el celular como aplicación web
+progresiva (PWA). \\
+Lanzamiento (junio de 2027) & Integración con WhatsApp; alerta ante
+gastos recurrentes que aumentan por encima de la inflación; deuda de
+préstamos bancarios; seguimiento simple de inversiones; carga masiva de
+movimientos desde resúmenes de tarjeta o de banco; plan pago y cobro de
+la suscripción. \\
+Posteriores al lanzamiento & Alerta ante gastos estimados que se acercan
+al límite del presupuesto o lo superan; recomendaciones
+personalizadas. \\
+\end{longtable}
+}
+
+El cronograma se extenderá hasta alcanzar el punto de equilibrio
+operativo, cuya fecha se determinará en el plan financiero.
+
+\capitulo{6 Plan de Marketing}
+
+\subsection*{6.1 Objetivos}
+\addcontentsline{toc}{subsection}{6.1 Objetivos}
+
+Los objetivos comerciales se plantean para el primer año de operación,
+comprendido entre el lanzamiento (junio de 2027) y mayo de 2028, y se
+apoyan en la investigación de mercado primaria realizada para este
+proyecto y en indicadores de referencia de la industria.
+
+\textbf{Investigación de mercado.} Entre el 19 y el 20 de septiembre de
+2026 se realizó una encuesta en línea a 31 personas de entre 19 y 27
+años, en su mayoría estudiantes universitarios, seleccionadas por
+conveniencia, por lo que sus resultados son orientativos. Los
+principales hallazgos son:
+
+\begin{itemize}
+\tightlist
+\item
+  El 35\% no registra ninguno de sus gastos y el 81\% dedica menos de
+  una hora por semana a administrar sus finanzas.
+\item
+  El 68\% querría tener más control sobre sus finanzas, pero sólo si es
+  fácil y no le consume tiempo.
+\item
+  La necesidad más mencionada es saber con exactitud cuánto gasta por
+  mes y en qué (81\%).
+\item
+  La carga de gastos mediante WhatsApp le resultaría igual o más útil
+  que la anotación manual al 81\%.
+\item
+  El 61\% no utiliza inteligencia artificial para sus finanzas, pero lo
+  haría.
+\item
+  El 52\% estaría dispuesto a pagar una suscripción mensual.
+\item
+  16 de los 31 participantes dejaron un contacto para recibir novedades
+  o colaborar con el proyecto.
+\end{itemize}
+
+El informe completo se incluye como anexo.
+
+\textbf{Objetivos cualitativos.}
+
+\begin{itemize}
+\tightlist
+\item
+  Validar que las funciones que incorporan la inflación a la
+  planificación financiera generan valor para los usuarios y constituyen
+  un diferencial frente a la competencia.
+\item
+  Instalar a Quickexpense entre los jóvenes y adultos jóvenes de Rosario
+  como la forma más simple de saber en qué se gasta el dinero.
+\item
+  Consolidar a WhatsApp como el canal principal de uso del servicio.
+\end{itemize}
+
+\textbf{Objetivos cuantitativos.} Para fijar las metas se tomaron como
+referencia los siguientes indicadores de la industria:
+
+\begin{itemize}
+\tightlist
+\item
+  La conversión mediana de aplicaciones de suscripción con modelo
+  freemium es de alrededor del 2,1\%, y alcanza un 3,5\% en la categoría
+  de productividad, con valores cercanos al 9\% en las mejores
+  aplicaciones.
+\item
+  La retención a 30 días de las aplicaciones financieras se ubica entre
+  el 2\% y el 9\%, según la fuente y la plataforma.
+\end{itemize}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Indicador
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Meta al cierre del primer año
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Usuarios registrados (acumulado) & 150 (mínimo aceptable: 100) \\
+Usuarios activos mensuales & 45 (30\% de los registrados) \\
+Usuarios con plan pago & 8 (5\% de los registrados) \\
+Movimientos registrados mediante el chatbot & Al menos el 60\% del
+total \\
+\end{longtable}
+}
+
+La meta de usuarios activos supera los indicadores de referencia porque
+la base inicial se construye mediante contacto directo y con usuarios
+que participaron de las etapas Alpha y Beta, que suelen mostrar un
+compromiso mayor que los captados mediante publicidad masiva. La
+conversión a pago se fija por encima de la mediana del mercado, en línea
+con la disposición a pagar declarada en la encuesta, que de todas formas
+sobrestima la conversión real.
+
+\textbf{Metas trimestrales.}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1400}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3400}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2800}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2400}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Trimestre
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Período
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Usuarios registrados (acumulado)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Usuarios con plan pago
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+T1 & Junio a agosto de 2027 & 60 & 2 \\
+T2 & Septiembre a noviembre de 2027 & 90 & 4 \\
+T3 & Diciembre de 2027 a febrero de 2028 & 120 & 6 \\
+T4 & Marzo a mayo de 2028 & 150 & 8 \\
+\end{longtable}
+}
+
+Antes del lanzamiento, las metas corresponden a las etapas de prueba:
+hasta 20 usuarios en la versión Alpha (fines de 2026) y entre 20 y 50 en
+la versión Beta (febrero de 2027). Los usuarios de la versión Beta que
+continúen utilizando el servicio se contabilizan como usuarios
+registrados del primer año.
+
+\subsection*{6.2 Resultados esperados en materia de cobertura y
+participación}
+\addcontentsline{toc}{subsection}{6.2 Resultados esperados en materia de
+cobertura y participación}
+
+\textbf{Cobertura.} Durante el primer año de operación, la cobertura
+geográfica se concentrará en la ciudad de Rosario. Si bien el servicio
+es digital y puede utilizarse desde cualquier punto del país, las
+acciones de comunicación y captación se dirigirán exclusivamente a esta
+ciudad, lo que permite concentrar recursos limitados y mantener un
+contacto cercano con los primeros usuarios. La expansión a otras
+ciudades se evaluará en función de los resultados alcanzados.
+
+\textbf{Participación.} El departamento Rosario cuenta con 311.156
+habitantes de entre 20 y 34 años según el Censo 2022, rango que
+constituye el núcleo del público objetivo. La meta de 150 usuarios
+registrados al cierre del primer año representa alrededor del 0,05\% de
+esa población. Se trata de una participación deliberadamente acotada,
+coherente con una estrategia de enfoque, con los recursos de un equipo
+unipersonal y con un mercado en el que ya operan competidores locales;
+como referencia, el competidor local más desarrollado declara más de
+11.000 usuarios activos en más de 20 países.
+
+En consecuencia, el objetivo del primer año no es alcanzar una
+participación significativa del mercado, sino validar la propuesta de
+valor en un grupo reducido y comprometido de usuarios, que sirva como
+base para el crecimiento posterior.
+

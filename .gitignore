@@ -1,0 +1,5 @@
+# Compilación de LaTeX (herramientas/compilar.sh)
+latex/build/
+
+# Credenciales de Plane (herramientas/plane.py)
+herramientas/plane.env

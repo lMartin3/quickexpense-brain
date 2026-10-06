@@ -27,6 +27,10 @@ Los archivos que empiezan con `_` (guías de capítulo, formato, plantillas, rel
 
 Todas las imágenes del documento final van en `imagenes/`. Se referencian desde la sección Respuesta con `![descripción](../imagenes/archivo.png)`.
 
+## Compilar
+
+`herramientas/compilar.sh` genera `latex/build/main.pdf` con las secciones Respuesta. Detalle en `herramientas/README.md`.
+
 ## Decisiones confirmadas
 
 Estas decisiones resolvieron las inconsistencias entre el Parcial y `fuentes/Idea de proyecto.md`. Ya están aplicadas en los `.md`:

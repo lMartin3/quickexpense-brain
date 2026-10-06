@@ -20,3 +20,9 @@ NUNCA asumas ni inventes nada. Si se te pide que desarrolles puntos del document
 ## Compilado
 El trabajo se debería compilar en un archivo latex en la carpeta "latex" en base a toda la carpeta de documentación
 Las imágenes que van en el archivo final también deben estar dentro de la carpeta de documentación
+
+
+## Citas y fuentes de información
+Cualquier información de páginas web, libros, estudios, papers, etc deberá estar CITADA en formato APA. La información de dónde salió la información debería estar almacenada en los md en documentación en general
+## Plane
+Las tareas del proyecto se gestionan en Plane (plane.atwire.net). Para leer o modificar work items usá `herramientas/plane.py` (ver `herramientas/README.md` y `herramientas/plane.py --help`). Empezá con `herramientas/plane.py proyecto` para conocer los estados, etiquetas y miembros. No borres work items sin que se pida explícitamente.

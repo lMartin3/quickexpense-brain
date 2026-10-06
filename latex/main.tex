@@ -1,0 +1,109 @@
+% Documento principal del trabajo final.
+% El contenido se genera desde documentacion/ con herramientas/compilar.sh
+% (no editar los archivos de latex/generado/ a mano).
+
+\documentclass[11pt,a4paper]{article}
+
+% --- Idioma y fuente ---------------------------------------------------------
+\usepackage[spanish,es-noshorthands,es-tabla]{babel}
+\usepackage{fontspec}
+% La consigna pide Arial. Si no está instalada se usa Liberation Sans,
+% que tiene las mismas métricas.
+\IfFontExistsTF{Arial}{\setmainfont{Arial}}{\setmainfont{Liberation Sans}}
+\usepackage{microtype}
+
+% --- Página -------------------------------------------------------------------
+\usepackage[a4paper,margin=2.5cm,headheight=1.4cm,headsep=0.6cm]{geometry}
+\usepackage{parskip}
+\usepackage{graphicx}
+\graphicspath{{../documentacion/imagenes/}}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{lastpage}
+
+% --- Títulos: Arial Bold 14 / 13 / 11 (consigna) ------------------------------
+\usepackage{titlesec}
+\setcounter{secnumdepth}{0}
+\setcounter{tocdepth}{3}
+\titleformat{\section}{\fontsize{14pt}{17pt}\selectfont\bfseries}{}{0pt}{}
+\titleformat{\subsection}{\fontsize{13pt}{16pt}\selectfont\bfseries}{}{0pt}{}
+\titleformat{\subsubsection}{\fontsize{11pt}{14pt}\selectfont\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{0pt}{12pt}
+\titlespacing*{\subsection}{0pt}{18pt}{8pt}
+\titlespacing*{\subsubsection}{0pt}{14pt}{6pt}
+
+% Capítulo (punto mayor) en página nueva y subtítulos intermedios (2.1, 6.4, ...)
+\newcommand{\capitulo}[1]{\clearpage\section*{#1}\addcontentsline{toc}{section}{#1}}
+\newcommand{\subcapitulo}[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
+
+% --- Soporte para el LaTeX que genera pandoc ----------------------------------
+\usepackage{longtable,booktabs,array,calc}
+\usepackage{caption}
+\newcounter{none}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{%
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi
+}
+\def\fps@figure{htbp}
+\makeatother
+\renewcommand{\arraystretch}{1.15}
+
+% --- Datos de la carátula (desde 00 - Preliminares/Carátula.md) ---------------
+\input{generado/caratula-datos}
+
+% --- Encabezado y pie (consigna) ----------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[height=1.1cm]{logo-uai.jpg}}
+\fancyhead[R]{\small\textbf{\qeProyecto}\\\qeAutor}
+\fancyfoot[C]{\small Página \thepage{} de \pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{bookmark}
+\hypersetup{pdftitle={\qeProyecto}, pdfauthor={\qeAutor}}
+
+\begin{document}
+
+% --- Carátula -----------------------------------------------------------------
+\begin{titlepage}
+  \centering
+  \includegraphics[height=3.5cm]{logo-uai-escudo.png}\par\vspace{0.8cm}
+  {\Large\bfseries \qeUniversidad\par}
+  \vspace{0.2cm}
+  {\large \qeFacultad\par}
+  {\large \qeCarrera\par}
+  \vspace{2.5cm}
+  {\large \qeMateria\par}
+  \vspace{0.6cm}
+  {\fontsize{26pt}{30pt}\selectfont\bfseries \qeProyecto\par}
+  \vfill
+  \begin{tabular}{@{}r@{\hspace{0.8em}}l@{}}
+    \textbf{Alumno:} & \qeAlumno \\
+    \textbf{Legajo:} & \qeLegajo \\
+    \textbf{Sede:} & \qeSede \\
+    \textbf{Docentes:} & \begin{tabular}[t]{@{}l@{}}\qeDocentes\end{tabular} \\
+  \end{tabular}
+  \par\vspace{1.5cm}
+  {\large \qeFecha\par}
+\end{titlepage}
+
+% --- Ficha de seguimiento y descripción del documento ---------------------------
+\input{generado/preliminares}
+
+% --- Índice ----------------------------------------------------------------------
+\clearpage
+{\setlength{\parskip}{0pt}\tableofcontents}
+
+% --- Resumen ejecutivo y capítulos ---------------------------------------------
+\input{generado/contenido}
+
+\end{document}
