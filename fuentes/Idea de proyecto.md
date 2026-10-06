@@ -23,7 +23,7 @@ La aplicación permite crear reportes de gastos mensuales para ayudar a los usua
 Se pueden registrar gastos que ocurren cada mes o cada cierto periodo de tiempo para evitar la carga manual y aumentar la predictibilidad de los gastos en los meses siguientes
 
 ## Herramienta de presupuesto
-La aplicación cuenta con una herramienta que permite crear un presupuesto mensual en base a gastos fijos recurrentes y estimaciones de gastos variables, las cuales cuentan con asistencia por parte de IA. 
+La aplicación cuenta con una herramienta que permite crear un presupuesto mensual en base a gastos fijos recurrentes y estimaciones de gastos variables, las cuales cuentan con asistencia por parte de IA.  
 
 ## Marcadores de metas de ahorro
 Herramienta para medir el progreso para alcanzar ciertas metas de ahorro a medida que ingresa dinero
@@ -35,3 +35,22 @@ Seguimiento de deuda de tarjetas de crédito mes a mes y cuotas pendientes de co
 Seguimiento de deuda de préstamos bancarios
 ### Otros tipos de deuda
 Otros tipos de deuda (a familiares, amigos, etc)
+
+## Alertas 
+Alertas según indicadores 
+### Alertas por suba de precios por sobre la inflación
+Alerta si algún gasto recurrente sube por encima del índice de la inflación
+
+### Alertas por gastos estimados fuera de presupuesto
+Alerta si los gastos estimados para el próximo mes + deuda + ajuste por inflación estimada superan o se acercan al límite del presupuesto
+## Seguimiento simple de inversiones
+Cuentas simples que permiten ajustes cada cierto periodo de tiempo (día, semana o mes) para registrar ganancias y pérdidas generadas por inversiones
+
+## Carga masiva de movimientos
+Un usuario podrá subir un resumen de tarjeta o resumen de movimientos de la cuenta del banco y convertirlo en una serie de movimientos mediante un proceso de refinamiento asistido por inteligencia artificial
+
+## Categorización automática de gastos
+La IA podrá categorizar atomáticamente gastos del usuario al momento de realizar una carga mediante chat o con cualquier forma de lenguaje natural.
+
+## Recomendaciones personalizadas
+Análisis automático por un agente de inteligencia artificial y recomendaciones personalizadas basadas en patrones de comportamiento para sugerir estrategias financieras.
