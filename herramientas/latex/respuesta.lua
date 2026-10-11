@@ -2,7 +2,7 @@
 -- precedida por un título armado con el frontmatter (punto + titulo).
 --
 -- Metadatos que lee (frontmatter del .md o -M en la línea de comandos):
---   punto, titulo, estado    → del frontmatter
+--   punto, titulo, estado    → del frontmatter (estado "omitido": nunca se incluye)
 --   incluir_pendientes=true  → incluye los puntos sin respuesta con la leyenda "Pendiente"
 --   siempre_incluir=true     → incluye el punto aunque esté pendiente (preliminares)
 
@@ -50,6 +50,10 @@ function Pandoc(doc)
     elseif b.t == "Header" and stringify(b.content) == "Respuesta" then
       dentro = true
     end
+  end
+
+  if estado == "omitido" then
+    return pandoc.Pandoc({}, meta)
   end
 
   local pendiente = estado == "pendiente" or es_vacio(respuesta)

@@ -2,7 +2,7 @@
 punto: ""
 titulo: "Descripción del Documento"
 capitulo: "Preliminares"
-estado: pendiente
+estado: borrador
 origen_respuesta: ""
 ---
 
@@ -38,7 +38,7 @@ Una tabla corta con los metadatos del documento.
 
 | Ítem | Detalle |
 | --- | --- |
-| Título del documento | PENDIENTE |
+| Título del documento | Proyecto Final de Ingeniería en Sistemas Informáticos |
 | Autor | Luraschi, Martín |
-| Fecha de Creación | PENDIENTE |
-| Última Actualización | PENDIENTE |
+| Fecha de Creación | 14 de abril de 2026 |
+| Última Actualización | 6 de octubre de 2026 |

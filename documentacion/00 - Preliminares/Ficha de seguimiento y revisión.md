@@ -2,7 +2,7 @@
 punto: ""
 titulo: "Ficha de Seguimiento y Revisión"
 capitulo: "Preliminares"
-estado: pendiente
+estado: omitido
 origen_respuesta: ""
 ---
 
@@ -30,6 +30,7 @@ Dos tablas al principio de la carpeta: una con los cambios que hiciste en cada v
 
 - ¿Qué fechas y qué versiones tuvieron las entregas anteriores? ¿Qué puntos incluía cada una?
 - ¿Hubo devoluciones de los docentes que haya que registrar como revisiones?
+- **Omitida del documento por decisión del autor (2026-10-06):** no se registran versiones anteriores y no hubo devoluciones de los docentes. Con `estado: omitido` el punto no se compila; para volver a incluirlo, cambiar el estado.
 
 ## Respuesta
 

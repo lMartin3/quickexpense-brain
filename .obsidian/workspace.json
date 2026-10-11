@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "documentacion/01 - Descripción General/1.1 Descripción básica del negocio.md",
+                "file": "fuentes/Idea de proyecto.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1.1 Descripción básica del negocio"
+              "title": "Idea de proyecto"
             }
           }
         ]
@@ -188,35 +188,38 @@
       "bases:Create new base": false
     }
   },
-  "active": "4dd5deaf780166c0",
+  "active": "4542fa34bf77a972",
   "lastOpenFiles": [
-    "herramientas/__pycache__/plane.cpython-314.pyc",
-    "herramientas/__pycache__",
-    "herramientas/plane.env.ejemplo",
-    "herramientas/plane.py",
-    "herramientas/plane.py.tmp.81605.0c10cc9868f4",
+    "fuentes/consigna.pdf.pdf",
+    "documentacion/01 - Descripción General/1.5 Misión, visión y propósito estratégico.md",
+    "documentacion/00 - Preliminares/Ficha de seguimiento y revisión.md",
+    "CLAUDE.md",
+    "fuentes/Progreso de trabajo actual.pdf",
+    "fuentes/Idea de proyecto.md",
+    "fuentes/consigna.md",
+    "documentacion/01 - Descripción General/1.1 Descripción básica del negocio.md",
+    "latex/build/xelatex130452.fls",
+    "latex/build/xelatex130441.fls",
+    "latex/build/xelatex130383.fls",
+    "latex/build/xelatex129537.fls",
+    "latex/build/xelatex153100.fls",
+    "latex/build/xelatex153099.fls",
+    "latex/build/xelatex143742.fls",
+    "latex/build/xelatex143741.fls",
+    "latex/build/contenido.md",
+    "documentacion/_Referencias.md",
     "documentacion/00 - Preliminares/Carátula.md",
     "documentacion/06 - Plan de Marketing/6.2 Resultados esperados en cobertura y participación.md",
     "documentacion/06 - Plan de Marketing/6.1 Objetivos.md",
-    "CLAUDE.md",
-    "latex/build/main.pdf",
     "documentacion/README.md",
     "herramientas/README.md",
-    "herramientas/README.md.tmp.35189.17e86d28e4ef",
-    "latex/build/xelatex54405.fls",
-    "latex/build/xelatex54300.fls",
-    "latex/build/xelatex53357.fls",
-    "latex/build/xelatex53244.fls",
     "documentacion/06 - Plan de Marketing/6.4.4 Estudios que respalden las hipótesis.md",
     "documentacion/06 - Plan de Marketing/6.7.5 Opciones de asociación.md",
     "documentacion/07 - Operaciones/7.2 Grupo fundador, directorio y accionistas.md",
-    "fuentes/Idea de proyecto.md",
     "documentacion/_Resultados de la encuesta.md",
     "documentacion/_Investigación de contexto.md",
     "documentacion/_Relevamiento del código.md",
     "documentacion/01 - Descripción General/1.3 Qué hace único al negocio.md",
-    "documentacion/01 - Descripción General/1.1 Descripción básica del negocio.md",
-    "documentacion/00 - Preliminares/Ficha de seguimiento y revisión.md",
     "documentacion/01 - Descripción General/_Guía del capítulo.md",
     "documentacion/00 - Preliminares/A. Resumen Ejecutivo.md",
     "documentacion/00 - Preliminares/_Formato del documento.md",
@@ -224,10 +227,6 @@
     "documentacion/imagenes/logo-uai-escudo.png",
     "documentacion/11 - Anexos/11.3 Bibliografía consultada.md",
     "documentacion/11 - Anexos/11.2 Anexos específicos del proyecto.md",
-    "documentacion/11 - Anexos/11.1 Normas de calidad.md",
-    "documentacion/10 - Solución Tecnológica/casos-de-uso/_Plantilla de caso de uso.md",
-    "documentacion/10 - Solución Tecnológica/10.5.9 Diagrama de despliegue.md",
-    "documentacion/10 - Solución Tecnológica/10.5.8 Diagrama entidad relación.md",
     "herramientas/markitdown/packages/markitdown/tests/test_files/test_llm.jpg",
     "herramientas/markitdown/packages/markitdown/tests/test_files/test.jpg"
   ]

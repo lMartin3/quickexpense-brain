@@ -45,4 +45,4 @@ logo de la universidad, nombre del proyecto, apellido y nombre del alumno, legaj
 | Legajo | B00067498-T1 |
 | Sede / localización | Regional Rosario |
 | Docentes | Banega, Matias Pablo; Sartorio, Alejandro Roberto |
-| Fecha | 2026 (falta fecha exacta) |
+| Fecha | 6 de octubre de 2026 |

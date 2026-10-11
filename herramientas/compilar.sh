@@ -60,15 +60,23 @@ declare -A INTERMEDIOS=(
   [10.5]="Descripción Global del Producto"
 )
 
-# Convierte la sección "Respuesta" de un .md a LaTeX (vacío si el punto no se incluye)
+# Extrae la sección "Respuesta" de un .md (vacío si el punto no se incluye).
+# Formato de salida: latex (preliminares) o markdown intermedio (contenido con citas).
 convertir() {
-  local archivo="$1"; shift
-  pandoc "$archivo" -f markdown -t latex \
+  local archivo="$1" formato="$2"; shift 2
+  pandoc "$archivo" -f markdown -t "$formato" \
     --lua-filter="$FILTROS/respuesta.lua" \
     -M incluir_pendientes="$CON_PENDIENTES" "$@"
 }
+# Markdown intermedio con pipe/grid tables, que conservan el ancho de las columnas
+MD_INTERMEDIO="markdown-simple_tables-multiline_tables"
 
-mkdir -p "$GEN"
+latex_crudo() { printf '```{=latex}\n%s\n```\n\n' "$1"; }
+
+mkdir -p "$GEN" "$BUILD"
+
+# Referencias bibliográficas: frontmatter de documentacion/_Referencias.md
+awk '/^---[[:space:]]*$/{n++; next} n==1' "$DOC/_Referencias.md" > "$BUILD/referencias.yaml"
 
 # --- Carátula -------------------------------------------------------------------
 pandoc "$DOC/00 - Preliminares/Carátula.md" -f markdown -t latex \
@@ -77,17 +85,19 @@ pandoc "$DOC/00 - Preliminares/Carátula.md" -f markdown -t latex \
 # --- Preliminares (siempre se incluyen) -------------------------------------------
 {
   for nombre in "Ficha de seguimiento y revisión" "Descripción del documento"; do
+    cuerpo="$(convertir "$DOC/00 - Preliminares/$nombre.md" latex -M siempre_incluir=true)"
+    [[ -z "$cuerpo" ]] && continue
     echo '\clearpage'
-    convertir "$DOC/00 - Preliminares/$nombre.md" -M siempre_incluir=true
+    echo "$cuerpo"
     echo
   done
 } > "$GEN/preliminares.tex"
 
-# --- Resumen ejecutivo y capítulos --------------------------------------------------
+# --- Resumen ejecutivo y capítulos (markdown intermedio) ----------------------------
 {
-  resumen="$(convertir "$DOC/00 - Preliminares/A. Resumen Ejecutivo.md")"
+  resumen="$(convertir "$DOC/00 - Preliminares/A. Resumen Ejecutivo.md" "$MD_INTERMEDIO")"
   if [[ -n "$resumen" ]]; then
-    echo '\clearpage'
+    latex_crudo '\clearpage'
     echo "$resumen"
     echo
   fi
@@ -99,12 +109,11 @@ pandoc "$DOC/00 - Preliminares/Carátula.md" -f markdown -t latex \
     declare -A intermedio_emitido=()
 
     while IFS= read -r archivo; do
-      cuerpo="$(convertir "$archivo")"
+      cuerpo="$(convertir "$archivo" "$MD_INTERMEDIO")"
       [[ -z "$cuerpo" ]] && continue
 
       if ! $capitulo_emitido; then
-        echo "\\capitulo{$num $titulo_cap}"
-        echo
+        latex_crudo "\\capitulo{$num $titulo_cap}"
         capitulo_emitido=true
       fi
 
@@ -112,8 +121,7 @@ pandoc "$DOC/00 - Preliminares/Carátula.md" -f markdown -t latex \
       if [[ "$punto" =~ ^([0-9]+\.[0-9]+)\.[0-9]+ ]]; then
         padre="${BASH_REMATCH[1]}"
         if [[ -n "${INTERMEDIOS[$padre]:-}" && -z "${intermedio_emitido[$padre]:-}" ]]; then
-          echo "\\subcapitulo{$padre ${INTERMEDIOS[$padre]}}"
-          echo
+          latex_crudo "\\subcapitulo{$padre ${INTERMEDIOS[$padre]}}"
           intermedio_emitido[$padre]=1
         fi
       fi
@@ -124,7 +132,19 @@ pandoc "$DOC/00 - Preliminares/Carátula.md" -f markdown -t latex \
 
     unset intermedio_emitido
   done < <(find "$DOC" -mindepth 1 -maxdepth 1 -type d -name '[0-9][0-9] - *' ! -name '00 - *' | sort -V)
-} > "$GEN/contenido.tex"
+} > "$BUILD/contenido.md"
+
+# Un solo paso de pandoc para todo el contenido: así las citas se resuelven en conjunto
+# (desambiguación 2026a/2026b) y la bibliografía sale completa en 11.3 (::: {#refs}).
+pandoc "$BUILD/contenido.md" -f markdown -t latex \
+  --citeproc --csl="$FILTROS/apa.csl" \
+  --metadata-file="$BUILD/referencias.yaml" -M lang=es-AR -M link-citations=true \
+  -o "$GEN/contenido.tex" 2> "$BUILD/pandoc.log" || { cat "$BUILD/pandoc.log" >&2; exit 1; }
+if grep -q 'Citeproc: citation .* not found' "$BUILD/pandoc.log"; then
+  echo "Hay citas sin referencia en documentacion/_Referencias.md:" >&2
+  grep -oE 'citation [^ ]+ not found' "$BUILD/pandoc.log" | sort -u >&2
+  exit 1
+fi
 
 echo "LaTeX generado en $GEN"
 $COMPILAR || exit 0

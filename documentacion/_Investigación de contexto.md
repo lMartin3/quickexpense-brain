@@ -5,7 +5,37 @@ fecha_investigacion: 2026-10-05
 
 # Investigación de contexto
 
-Datos de fuentes secundarias para el análisis estratégico (capítulos 2 a 4). Este archivo **no** se compila. Cada dato lleva su fuente; antes de la entrega conviene verificar las cifras clave en la fuente primaria (INDEC, BCRA) y pasar las fuentes a [[11.3 Bibliografía consultada]].
+Datos de fuentes secundarias para el análisis estratégico (capítulos 2 a 4). Este archivo **no** se compila. Cada dato lleva su fuente. Las fuentes que se citan en el documento están cargadas en [[_Referencias]] y se verificaron el 06/10/2026 (ver la sección "Verificación de fuentes").
+
+## Verificación de fuentes (06/10/2026)
+
+Cada dato citado en las secciones Respuesta se contrastó con su fuente original. Resultados:
+
+| Dato | Resultado |
+| --- | --- |
+| Inflación agosto 2026 (1,7% / 21,3% / 33,5%) | ✅ Confirmado en el informe técnico del INDEC (10/09/2026) |
+| PBI 2º trimestre 2026 (−0,6%), consumo privado (−2,4%) | ✅ INDEC, Informe de avance del nivel de actividad |
+| EMAE julio 2026 (−2,9% mensual, −1,4% interanual) | ✅ INDEC. Se descartó "la mayor caída desde abril de 2020" (solo en una columna de opinión) |
+| Desocupación 7,9% (2º trimestre 2026) | ✅ INDEC, EPH |
+| PBI 2025 +4,4% | ✅ Varios medios citando al INDEC (La Nación, 20/03/2026) |
+| Proyección 2026 | ⚠️ Solo 1,9% (Fundación Capital); el 2,4% se descartó |
+| Bandas cambiarias | ✅ Chequeado |
+| Tipo de cambio | ✅ Infobae 05/10/2026. MEP y CCL se descartaron |
+| Recargo impositivo | ⚠️ Corregido: 51–56% (no ≈53%) |
+| Ley 25.326, Decreto 353/2025 | ✅ Boletín Oficial / InfoLEG |
+| Proyectos de datos personales | ⚠️ Reformulado. El "enfoque basado en riesgo" corresponde a los proyectos de IA. Se descartó "ninguno con dictamen al 26/09" (sin fuente) |
+| Internet (41,6 millones, 90,6%) | ✅ DataReportal. La fecha es octubre de 2025, no "fines de 2025" |
+| Uso de celular | ❌ Corregido: 97,8% (antes "94–96%") |
+| WhatsApp / Telegram | ❌ Corregido: 93,9% / 43,6% (antes "96% / 4%") |
+| Adopción de IA (UTDT) | ✅ Nota de prensa de la UTDT, 18/11/2025 |
+| Educación financiera (BCRA–CAF) | ✅ Publicación de 2018 con datos de 2017 |
+| Población del departamento Rosario | ✅ El Ciudadano (Correa, 2023), con datos del Censo 2022 |
+| Política de WhatsApp sobre IA | ✅ Términos de WhatsApp Business y respond.io |
+| Gasti | ⚠️ "+11.000 personas usan Gasti" (no "usuarios activos"); planes USD 6,99 y 9,99. No se confirmó el cobro en pesos |
+| Precios de YNAB | ✅ Sitio oficial |
+| Precios de Spendee y Wallet | ❌ Las fuentes no coinciden; se sacaron |
+| Conversión freemium 2,1% | ✅ RevenueCat (2026). Se descartaron los valores por categoría (sin fuente verificable) |
+| Retención a 30 días en apps financieras | ⚠️ Solo Adjust 2% (vía Promodo). Se descartó el 9% de AppsFlyer |
 
 ## Economía
 
@@ -17,11 +47,11 @@ Datos de fuentes secundarias para el análisis estratégico (capítulos 2 a 4). 
 | PBI 2º trimestre 2026 | −0,6% respecto del 1º trimestre (desestacionalizado) | [Perfil](https://www.perfil.com/noticias/columnistas/la-actividad-economica-cayo-29-en-julio-y-encendio-las-alarmas-por-la-recesion-por-carlos-burgueno.phtml) |
 | EMAE julio 2026 | −2,9% mensual desestacionalizado (la mayor caída desde abril de 2020); −1,4% interanual; +1,7% acumulado en siete meses. **Recesión técnica** | Ídem |
 | Consumo y empleo | Consumo privado −2,4% trimestral; desempleo 7,9%; informalidad 45% de los ocupados | Fundación Capital, vía [MDZ](https://www.mdzol.com/dinero/dia-d-la-economia-el-indec-revela-el-emae-julio-y-se-define-si-argentina-entra-recesion-n1613691) |
-| Proyección PBI 2026 | Entre 1,9% (Fundación Capital) y 2,4% | [MDZ](https://www.mdzol.com/dinero/dia-d-la-economia-el-indec-revela-el-emae-julio-y-se-define-si-argentina-entra-recesion-n1613691), [Perfil](https://www.perfil.com/noticias/economia/los-ultimos-pronosticos-de-cuanto-va-a-crecer-la-economia-argentina-en-2026.phtml) |
+| Proyección PBI 2026 | 1,9% (Fundación Capital). El 2,4% que figuraba antes no tenía fuente identificable y se descartó | [MDZ](https://www.mdzol.com/dinero/dia-d-la-economia-el-indec-revela-el-emae-julio-y-se-define-si-argentina-entra-recesion-n1613691) |
 | Régimen cambiario | Flotación entre bandas desde el 10/04/2025 (acuerdo con el FMI). Desde el 02/01/2026, las bandas se actualizan por la última inflación publicada | [Chequeado](https://chequeado.com/el-explicador/bandas-de-flotacion-del-dolar-que-cambia-desde-2026-y-como-funcionaron-hasta-ahora/) |
-| Tipo de cambio (oct. 2026) | Mayorista ≈ $1.520; techo de la banda $1.924,62 (26,6% por encima) | [Infobae](https://www.infobae.com/economia/2026/10/05/el-dolar-opero-sin-cambios-y-quedo-a-mas-de-400-pesos-del-techo-de-las-bandas-cambiarias/) |
-| Otras cotizaciones (14/09/2026) | MEP $1.538,16; CCL $1.595,68; blue $1.545. La brecha con el oficial es mínima | [Infobae – dólar hoy](https://www.infobae.com/economia/divisas/dolar-hoy/), [Headtopics](https://ar.headtopics.com/news/d-lar-blue-y-oficial-mantienen-brecha-m-nima-mientras-bcra-87993407) |
-| Impuestos a servicios digitales del exterior | Pagados en pesos: ≈53% de recargo (21% de IVA por RG 4240, 30% de percepción de Ganancias/Bienes Personales por RG 5617 y ≈2% de IIBB). Pagados con dólares propios: solo el 21% de IVA. El impuesto PAIS se eliminó el 23/12/2024 | [Global66](https://www.global66.com/blog/como-afectan-los-impuestos-a-tus-gastos-digitales/), [nacho.com.ar](https://nacho.com.ar/iva-netflix-cobraran-el-impuesto-a-los-usuarios-de-servicios-digitales/) |
+| Tipo de cambio (05/10/2026) | Mayorista $1.520; techo de la banda $1.924,62 (404,62 pesos, 26,6% por encima); minorista (BNA) $1.540; blue $1.545 | [Infobae – Gasalla, 05/10/2026](https://www.infobae.com/economia/2026/10/05/el-dolar-opero-sin-cambios-y-quedo-a-mas-de-400-pesos-del-techo-de-las-bandas-cambiarias/) |
+| ~~Otras cotizaciones (14/09/2026)~~ | ~~MEP y CCL~~: descartado; venía de una página de cotizaciones en vivo, no citable | — |
+| Impuestos a servicios digitales del exterior | Pagados en pesos: **entre 51% y 56%** de recargo (21% de IVA por RG 4240, 30% de percepción por RG 5617 y entre 2% y 5% de IIBB según la provincia). Pagados con dólares propios: solo el 21% de IVA. El impuesto PAIS se eliminó el 23/12/2024. Santa Fe aplica IIBB a servicios digitales del exterior desde el 01/07/2025 | [L'Episcopo, nacho.com.ar (oct. 2026)](https://nacho.com.ar/iva-netflix-cobraran-el-impuesto-a-los-usuarios-de-servicios-digitales/), [Estudio Piacentini](https://www.estudiopiacentini.com.ar/santa-fe-aplica-ingresos-brutos-a-servicios-digitales-del-exterior-desde-el-1-de-julio-2025/) |
 
 ## Marco político y regulatorio
 
@@ -32,8 +62,8 @@ Datos de fuentes secundarias para el análisis estratégico (capítulos 2 a 4). 
 ## Tecnología y adopción
 
 - **Internet:** 41,6 millones de usuarios en octubre de 2025 (≈90% de la población) y 66,6 millones de conexiones móviles (145% de la población). Fuente: [DataReportal – Digital 2026 Argentina](https://datareportal.com/reports/digital-2026-argentina).
-- **Celular:** entre el 94,2% y el 96% de las personas de 18 a 64 años usa celular, la tecnología de uso más extendido. Fuente: INDEC (Acceso y uso de TIC), vía resultados de búsqueda; **verificar en INDEC**.
-- **Mensajería:** WhatsApp es la plataforma más usada por el 93,3% de la audiencia online (2º trimestre de 2025, [Statista](https://statista.com/topics/7044/social-media-usage-in-argentina)). En 2026 concentra ≈96% de la mensajería instantánea, contra ≈4,2% de **Telegram** ([wmtips](https://www.wmtips.com/technologies/instant-messaging/country/ar/)). Infobip describe a WhatsApp como "infraestructura social" del país ([Mercado](https://mercado.com.ar/tendencias/el-informe-de-infobip-describe-a-whatsapp-como-infraestructura-social-en-argentina)).
+- **Celular e internet por edad (INDEC, 4º trimestre de 2024, publicado en mayo de 2025):** usa celular el 97,8% de las personas de 18 a 29 años y el 97,8% de las de 30 a 64; usa internet el 96,5% y el 94,1%, respectivamente. Fuente: [INDEC – Acceso y uso de TIC, Informes técnicos 9(113)](https://www.indec.gob.ar/uploads/informesdeprensa/mautic_05_25FD0D0C4A71.pdf). *(Corregido: antes decía "entre 94,2% y 96%", sin verificar.)*
+- **Mensajería (corregido 06/10/2026):** según Statista, con datos de DataReportal, We Are Social y Meltwater (internautas de 16 a 64 años, 2º trimestre de 2025, publicado el 08/11/2025), **WhatsApp 93,9% y Telegram 43,6%** de alcance mensual ([Statista](https://www.statista.com/statistics/284401/argentina-social-network-penetration/)). ~~El dato anterior "WhatsApp ≈96% / Telegram ≈4,2%" venía de wmtips, que mide tecnologías usadas en sitios web y no el uso de las personas. Era incorrecto.~~
 - **IA generativa:** según la Encuesta Nacional sobre Adopción de IA (UTDT, agosto-septiembre de 2025), el 45,5% de los adultos conectados la usa con fines personales y el 21,8% piensa incorporarla. En la Generación Z el uso llega al 63,9%; con universitario completo, al 61,7%; con secundario incompleto o menos, al 29,5%. Fuentes: [UTDT](https://www.utdt.edu/ver_nota_prensa.php?id_nota_prensa=23080), [La Nación](https://www.lanacion.com.ar/tecnologia/como-y-para-que-usamos-la-inteligencia-artificial-en-argentina-segun-un-estudio-academico-nid14112025/), [repositorio UTDT](https://repositorio.utdt.edu/items/3505760f-5658-4eb7-a504-08e4a53e19c3).
 
 ## Educación financiera
@@ -53,10 +83,10 @@ Datos de fuentes secundarias para el análisis estratégico (capítulos 2 a 4). 
 | **Chanchito** | No relevado | WhatsApp, Apple Pay, correo | Captura conversacional y categorización con IA | No relevado |
 | **Finy** | No relevado | App | Recibos por voz o foto, sincronización con Mercado Pago, multimoneda | Freemium |
 | **AI Money**, **FinAI** | No relevado | WhatsApp | Registro por texto, voz o foto | Gratis / no relevado |
-| **YNAB** | EE.UU. | App/web | Presupuesto base cero, metas, deudas, sincronización bancaria (no en Argentina) | USD 14,99/mes o USD 109/año, **más ≈53% de impuestos si se paga en pesos** |
+| **YNAB** | EE.UU. | App/web | Presupuesto base cero, metas, deudas, sincronización bancaria (no en Argentina) | USD 14,99/mes o USD 109/año, **más entre 51% y 56% de impuestos si se paga en pesos** |
 | **Spendee** | Global | App | Billeteras compartidas, presupuestos, sincronización bancaria | USD 5,99/mes o USD 35,99/año |
 | **Wallet (BudgetBakers)** | Global | App/web | Analítica de patrimonio, deudas | ≈€4,49/mes (varía por región) |
-| **NaranjaX "Jarras"**, **Mercado Pago** | Argentina | App propia | Separación de dinero en compartimentos dentro de la billetera | Gratis |
+| **Naranja X** ("frascos"), **Mercado Pago** | Argentina | App propia | Separación de dinero en compartimentos dentro de la billetera | Gratis |
 
 Fuentes: [gasti.pro](https://gasti.pro/), [Gasti – comparativa 2026](https://gasti.pro/blog/mejores-apps-controlar-gastos-argentina-2026/), [Piggy – comparativa](https://piggy.com.ar/guias/mejor-app-finanzas-personales-argentina/), [QueWallet](https://www.quewallet.com/), [Chanchito](https://www.chanchito.app/blog/app-para-controlar-gastos), [AI Money](https://www.ai-money.app/), [FinAI](https://finbotai.co/), [YNAB pricing](https://getfinny.app/blog/ynab-pricing-2026), [Spendee (App Store)](https://apps.apple.com/app/id635861140), [Wallet review](https://getfinny.app/blog/wallet-budgetbakers-review-2026).
 

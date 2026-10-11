@@ -6,6 +6,7 @@
 
 % --- Idioma y fuente ---------------------------------------------------------
 \usepackage[spanish,es-noshorthands,es-tabla]{babel}
+\spanishplainpercent % "33,5%" sin espacio antes del signo (como en los .md)
 \usepackage{fontspec}
 % La consigna pide Arial. Si no está instalada se usa Liberation Sans,
 % que tiene las mismas métricas.
@@ -30,6 +31,9 @@
 \titlespacing*{\section}{0pt}{0pt}{12pt}
 \titlespacing*{\subsection}{0pt}{18pt}{8pt}
 \titlespacing*{\subsubsection}{0pt}{14pt}{6pt}
+\titleformat{\paragraph}{\fontsize{11pt}{14pt}\selectfont\bfseries\itshape}{}{0pt}{}
+\titlespacing*{\paragraph}{0pt}{12pt}{4pt}
+\setcounter{tocdepth}{3}
 
 % Capítulo (punto mayor) en página nueva y subtítulos intermedios (2.1, 6.4, ...)
 \newcommand{\capitulo}[1]{\clearpage\section*{#1}\addcontentsline{toc}{section}{#1}}
@@ -54,6 +58,37 @@
 \def\fps@figure{htbp}
 \makeatother
 \renewcommand{\arraystretch}{1.15}
+
+% Citas y bibliografía en APA (pandoc --citeproc)
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+\let\@cite@ofmt\@firstofone
+\def\@biblabel#1{}
+\def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.27cm} % sangría francesa de APA
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2]
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+\usepackage{xurl}
+\usepackage{pgfgantt} % diagrama de Gantt (5.2) % cortar URLs largas en la bibliografía
 
 % --- Datos de la carátula (desde 00 - Preliminares/Carátula.md) ---------------
 \input{generado/caratula-datos}

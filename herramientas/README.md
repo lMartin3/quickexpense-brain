@@ -28,6 +28,7 @@ Requiere `pandoc`, `xelatex` y `latexmk` (en Arch: `pandoc-cli` y los paquetes `
 6. Los títulos de los capítulos y de los subtítulos intermedios (2.1, 6.4, etc.) están definidos en `compilar.sh`.
 7. `latex/main.tex` es la plantilla con el formato de la consigna: títulos en Arial Bold 14/13/11, cuerpo en Arial 11 justificado, encabezado con el logo, el proyecto y el autor, y pie "Página N de M". Si Arial no está instalada se usa Liberation Sans, que tiene las mismas métricas (`paru -S ttf-ms-fonts` instala Arial).
 8. `latex/generado/` se regenera en cada compilación: no editarlo a mano.
+9. **Citas en APA 7:** las fuentes están en el frontmatter de `documentacion/_Referencias.md` y se citan con `[@clave]` en las secciones Respuesta. El contenido se convierte en un solo paso con `pandoc --citeproc` y el estilo `herramientas/latex/apa.csl` (oficial de CSL); la lista de referencias se arma sola en 11.3 con las fuentes citadas. Si una cita no existe en `_Referencias.md`, la compilación falla y la muestra.
 
 ## Consejos para escribir en los `.md`
 

@@ -20,7 +20,8 @@ Los archivos que empiezan con `_` (guías de capítulo, formato, plantillas, rel
 
 - `pendiente`: sin respuesta todavía.
 - `borrador`: tiene texto (en general migrado del Parcial, `fuentes/Progreso de trabajo actual.pdf`, con las correcciones confirmadas), pero falta revisarlo.
-- `automatico`: lo genera LaTeX (por ejemplo, el índice).
+- `automatico`: lo genera LaTeX (por ejemplo, el índice o la bibliografía).
+- `omitido`: no se compila aunque tenga contenido.
 - Cuando un punto esté revisado, cambiar a `listo`.
 
 ### Imágenes
@@ -30,6 +31,10 @@ Todas las imágenes del documento final van en `imagenes/`. Se referencian desde
 ## Compilar
 
 `herramientas/compilar.sh` genera `latex/build/main.pdf` con las secciones Respuesta. Detalle en `herramientas/README.md`.
+
+## Citas
+
+Toda información de terceros se cita en APA: las fuentes se cargan en [[_Referencias]] y se citan en las secciones Respuesta con `[@clave]`. La verificación de cada dato está en [[_Investigación de contexto]].
 
 ## Decisiones confirmadas
 
@@ -51,6 +56,7 @@ Estas decisiones resolvieron las inconsistencias entre el Parcial y `fuentes/Ide
 | Diferencial | Inflación como variable de planificación (alertas de recurrentes vs. IPC, presupuesto con inflación estimada, deuda y cuotas). Estrategia de Porter: enfoque con diferenciación |
 | Etapas | Alpha (<20 usuarios, fines de 2026) → feedback → Beta (20–50, feb. 2027) → feedback y pulido → lanzamiento (junio 2027) |
 | Funciones por etapa | Alpha: base actual + fotos de tickets, categorización automática, invitación por email, inflación, dólar, reportes, recurrentes, presupuesto, metas, tarjetas y cuotas, otras deudas, PWA. Lanzamiento: WhatsApp, alerta de recurrentes por encima de la inflación, préstamos, inversiones, carga masiva, plan pago. Después: alerta de presupuesto y recomendaciones (ver 5.2) |
+| Entrega 4 (06/10/2026) | Fecha en la carátula; título del documento "Proyecto Final de Ingeniería en Sistemas Informáticos" (creado el 14/04/2026); ficha de seguimiento omitida (`estado: omitido`); Anexo A con la encuesta (11.2); FODA como matriz; Gantt en 5.2; "alto estrés financiero" como opinión del autor; canal WhatsApp confirmado para el lanzamiento |
 | Inversión | 100% capital propio, principalmente tiempo; ≈USD 30/mes de servidor + USD 50/mes de tokens |
 | Cobertura | Rosario |
 | Competencia e inflación | Confirmado: Gasti y Piggy no tienen funciones basadas en la inflación |
