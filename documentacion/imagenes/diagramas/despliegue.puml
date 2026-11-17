@@ -1,0 +1,56 @@
+@startuml despliegue
+!pragma layout smetana
+!include _estilo.iuml
+title Diagrama de despliegue
+
+node "Dispositivo del usuario" as DEV {
+  artifact "Navegador web" as NAV
+  artifact "Cliente de Telegram" as TGC
+}
+
+cloud "Cloudflare\n(DNS y proxy, protección contra ataques)" as CF
+
+node "Servidor dedicado alquilado\n«Ubuntu Server»" as SRV {
+  node "Firewall" as FW
+  node "Traefik\n(proxy inverso, certificados HTTPS)" as TRK
+  node "Docker Compose de Quickexpense" as DC {
+    node "quickexpense-frontend\n«contenedor node:20-alpine»\npuerto 3000" as FE
+    node "quickexpense\n«contenedor eclipse-temurin:21-jre»\npuerto 8080" as BE
+    database "PostgreSQL 16\n«contenedor»" as DB
+    node "RustFS (S3)\n«contenedor»" as S3
+  }
+  node "Docker Compose de Keycloak\n(aislado de la aplicación)" as DCK {
+    node "Keycloak\n«contenedor»" as KC
+  }
+}
+
+cloud "GitHub" as GH {
+  node "GitHub Actions" as GA
+  node "GitHub Container Registry\n(ghcr.io)" as GHCR
+}
+
+cloud "Servicios externos" as EXT {
+  node "Telegram Bot API" as TG
+  node "API de Anthropic" as ANT
+  node "API de OpenAI" as OAI
+}
+
+NAV --> CF : HTTPS
+TGC --> TG
+CF --> FW : HTTPS
+FW --> TRK
+TRK --> FE : aplicación web
+TRK --> KC : inicio de sesión
+TRK --> CF : certificados (API de Cloudflare)
+FE --> BE : REST
+FE --> KC : token
+BE --> DB : JDBC
+BE --> S3 : API S3
+BE --> KC : claves del JWT
+BE --> TG : HTTPS
+BE --> ANT : HTTPS
+BE --> OAI : HTTPS
+GA --> GHCR : publica imágenes
+GA --> SRV : SSH: docker compose pull / up
+DC ..> GHCR : descarga imágenes
+@enduml

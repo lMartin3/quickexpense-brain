@@ -1,0 +1,71 @@
+@startuml
+!pragma layout smetana
+!include _estilo.iuml
+hide empty attributes
+skinparam classAttributeIconSize 0
+
+package "web.application.controller" as pctl {
+  class JournalController {
+    +createJournalEntry(request
+    +updateJournalEntry(id, request)
+    +getAllJournalEntries(
+    +getJournalEntryById(id
+    +deleteJournalEntryById(id
+  }
+}
+
+package "expense.application" as papp {
+  class JournalEntryService {
+    +createJournalEntry(request): JournalEntry
+    +updateJournalEntry(id, request): JournalEntry
+    +listAllJournalEntries(): List<JournalEntry>
+    +findJournalEntryById(id): JournalEntry
+    +deleteJournalEntryById(id)
+  }
+}
+
+package "expense.domain.service" as pds {
+  interface UserContextProvider {
+    +getCurrentUserWorkspaceId(): WorkspaceId?
+  }
+}
+
+package "expense.domain.repository" as prepo {
+  interface BaseWorkspaceEntityRepository<T, I> {
+    +findAllByWorkspaceId(workspaceId): List<T>
+    +findById(id: I): T?
+    +deleteById(id: I)
+    +save(entity: T): T
+  }
+  interface JournalEntryRepository {
+    +getBalanceForAccountId(accountId): BigDecimal
+    +getBalanceAt(accountId, date): BigDecimal
+    +getByCategoryId(categoryId): List<JournalEntry>
+    +getByAccountId(accountId): List<JournalEntry>
+  }
+  interface AccountRepository {
+    +findByAccountCategoryId(accountCategoryId): List<Account>
+    +findByFlagAndCurrencyCode(flag, currency, workspaceId): Account?
+  }
+}
+
+package "web.infrastructure.persistence" as ppers {
+  class JournalEntrySQLRepository
+  class AccountSQLRepository
+}
+
+JournalController --> JournalEntryService
+JournalEntryService --> JournalEntryRepository
+JournalEntryService --> AccountRepository
+JournalEntryService --> UserContextProvider
+
+
+JournalEntryRepository -up-|> BaseWorkspaceEntityRepository
+AccountRepository -up-|> BaseWorkspaceEntityRepository
+
+JournalEntrySQLRepository .up.|> JournalEntryRepository
+AccountSQLRepository .up.|> AccountRepository
+
+
+JournalEntryRepository -[hidden]down- AccountRepository
+@enduml

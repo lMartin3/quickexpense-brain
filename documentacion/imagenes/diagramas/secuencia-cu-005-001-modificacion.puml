@@ -1,0 +1,22 @@
+@startuml secuencia-cu-005-001-modificacion
+!include _estilo.iuml
+title CU-005-001 Gestionar gasto recurrente (modificación)
+
+actor Usuario
+participant "Frontend\n(vía proxy de API)" as FE
+participant "RecurringExpense\nController" as CTRL
+participant "RecurringExpense\nService" as RES
+participant "RecurringExpense\nMaterializer" as MAT
+database "PostgreSQL" as DB
+
+Usuario -> FE : edita el gasto recurrente
+FE -> CTRL : PUT /recurring-expenses/{id}
+CTRL -> RES : update(id, solicitud)
+RES -> DB : findByIdForUpdate (bloqueo de la fila)
+RES -> DB : guardar cambios
+RES -> MAT : reconcile(gasto)
+note right of MAT : mismo reconcile que en el alta:\nrehace las ocurrencias PENDING
+RES --> CTRL : gasto actualizado
+CTRL --> FE : 200
+FE --> Usuario : muestra el gasto actualizado
+@enduml

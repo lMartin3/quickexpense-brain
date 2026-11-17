@@ -1,0 +1,38 @@
+@startuml secuencia-cu-005-002
+!include _estilo.iuml
+title CU-005-002 Confirmar u omitir el pago de un gasto recurrente
+
+actor Usuario
+participant "Frontend (InstanceDialog,\nvía proxy de API)" as FE
+participant "RecurringExpense\nController" as CTRL
+participant "RecurringExpenseInstance\nService" as RIS
+database "PostgreSQL" as DB
+
+Usuario -> FE : abre una ocurrencia pendiente
+Usuario -> FE : elige confirmar (monto y fecha reales) u omitir
+opt vincular con un movimiento registrado
+  Usuario -> FE : elige el asiento del libro diario
+end
+FE -> CTRL : PUT /recurring-expenses/{id}/instances/{instanceId}
+CTRL -> RIS : update(solicitud)
+RIS -> DB : leer ocurrencia
+RIS -> RIS : validar
+note right of RIS
+  la fecha estimada no cambia;
+  confirmada: requiere monto y fecha reales;
+  no confirmada: sin datos reales
+end note
+opt con asiento vinculado
+  RIS -> DB : verificar que el asiento sea del mismo espacio
+end
+alt validación incumplida
+  RIS --> CTRL : DomainException
+  CTRL --> FE : 400
+  FE --> Usuario : muestra el error
+else válida
+  RIS -> DB : guardar estado (CONFIRMED / SKIPPED)
+  RIS --> CTRL : ocurrencia
+  CTRL --> FE : 200
+  FE --> Usuario : actualiza la lista de ocurrencias
+end
+@enduml

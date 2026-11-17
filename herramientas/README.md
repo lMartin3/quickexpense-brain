@@ -21,6 +21,7 @@ Requiere `pandoc`, `xelatex` y `latexmk` (en Arch: `pandoc-cli` y los paquetes `
 1. De cada `.md` de `documentacion/` se toma **solo la sección `## Respuesta`**. El título del punto sale del frontmatter (`punto` y `titulo`).
 2. Los puntos con `estado: pendiente` o sin respuesta se omiten, salvo con `--con-pendientes`. La ficha de seguimiento y la descripción del documento siempre se incluyen.
 3. Los archivos que empiezan con `_` (guías, relevamientos) no se compilan.
+   - **Casos de uso:** cada uno es un archivo `10 - Solución Tecnológica/casos-de-uso/CU-*.md`. Los que no están pendientes se agregan debajo de 10.5.3, ordenados por ID, con el título armado desde `id` y `nombre` del frontmatter. El índice de 10.5.2 (identificación, nombre y página) se genera solo con esos mismos archivos.
 4. La carátula se arma con la tabla de `00 - Preliminares/Carátula.md`.
 5. La conversión de Markdown a LaTeX la hace pandoc con los filtros de `herramientas/latex/`:
    - `respuesta.lua`: extrae la respuesta;
@@ -33,7 +34,9 @@ Requiere `pandoc`, `xelatex` y `latexmk` (en Arch: `pandoc-cli` y los paquetes `
 ## Consejos para escribir en los `.md`
 
 - **Imágenes:** guardarlas en `documentacion/imagenes/` y referenciarlas con `![Descripción](../imagenes/archivo.png)`.
-- **Ancho de las columnas de una tabla:** se controla con la cantidad de guiones de la línea separadora. Por ejemplo, `| ---------- | ------------------------------ |` da una columna angosta y otra ancha. Obsidian lo ignora al mostrar.
+- **Figuras apaisadas:** agregar `{.apaisada}` después de la imagen (`![Descripción](../imagenes/diagramas/x.svg){.apaisada}`) la ubica sola en una página, rotada 90°. Conviene para diagramas mucho más anchos que altos (lo resuelve `herramientas/latex/figuras.lua`).
+- **Diagramas:** las fuentes PlantUML están en `documentacion/imagenes/diagramas/*.puml` e incluyen `_estilo.iuml`. `herramientas/diagramas.sh` genera el SVG (para Obsidian) y el PDF (para LaTeX); en el `.md` se enlaza el SVG. Para que el texto se lea en A4, cada diagrama no debería pasar de unos 900 px de ancho.
+- **Ancho de las columnas de una tabla:** se controla con la cantidad de guiones de la línea separadora. Por ejemplo, `| ---------- | ------------------------------ |` da una columna angosta y otra ancha. Obsidian lo ignora al mostrar. Pandoc solo usa esos anchos si alguna línea de la tabla supera los 72 caracteres (si no, alargar la línea separadora manteniendo la proporción) y, además, los reajusta según el contenido. Para que se respete la proporción exacta, agregar `anchos_exactos: true` al frontmatter del punto; los casos de uso ya lo tienen activado.
 
 ## Plane (gestión de tareas)
 

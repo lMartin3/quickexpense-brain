@@ -1,0 +1,27 @@
+@startuml secuencia-cu-003-001-asistente
+!include _estilo.iuml
+title CU-003-001: interpretar y registrar el movimiento
+
+participant "ChatService" as CHAT
+participant "AssistantService" as AS
+participant "API de\nAnthropic" as LLM
+participant "WriteAiTool\nAdapter" as TOOL
+participant "JournalEntry\nService" as JES
+database "PostgreSQL" as DB
+
+CHAT -> AS : processMessage(texto + documentos)
+AS -> DB : leer historial de la conversación
+AS -> LLM : prompt + historial + herramientas
+LLM --> AS : llamada a createJournalEntry
+AS -> TOOL : createJournalEntry(asiento)
+TOOL -> TOOL : verificar membresía al espacio de trabajo
+TOOL -> JES : createJournalEntry(solicitud)
+JES -> JES : JournalEntry.create y verificar reglas
+JES -> DB : guardar asiento y partidas (RLS por espacio)
+JES --> TOOL : asiento creado
+TOOL --> AS : resultado
+AS -> LLM : resultado de la herramienta
+LLM --> AS : texto de respuesta
+AS -> DB : guardar mensajes de la conversación
+AS --> CHAT : respuesta
+@enduml

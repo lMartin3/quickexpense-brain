@@ -1,0 +1,33 @@
+@startuml secuencia-cu-005-003
+!include _estilo.iuml
+title CU-005-003 Generar ocurrencias pendientes de gastos recurrentes
+
+actor Tiempo
+participant "RecurringExpense\nMaterializationJob" as JOB
+participant "ShedLock" as LOCK
+participant "RecurringExpense\nMaterializer" as MAT
+database "PostgreSQL" as DB
+
+Tiempo -> JOB : run() (cada una hora)
+JOB -> LOCK : tomar bloqueo
+alt otra instancia tiene el bloqueo
+  LOCK --> JOB : rechazado
+  JOB -> JOB : no hace nada
+else bloqueo obtenido
+  JOB -> MAT : materializeAllDue() (como sistema)
+  MAT -> DB : leer IDs de gastos recurrentes activos
+  loop por cada gasto (transacción propia)
+    MAT -> DB : findByIdForUpdate (bloqueo de la fila)
+    MAT -> MAT : horizonte = hoy (zona del espacio) + días de anticipación
+    alt inactivo o materializedUntil >= horizonte
+      MAT -> MAT : no hace nada
+    else hay fechas nuevas
+      MAT -> MAT : calcular fechas desde materializedUntil + 1 hasta el horizonte
+      MAT -> DB : crear las ocurrencias PENDING faltantes
+      MAT -> DB : actualizar materializedUntil
+    end
+    note right of MAT : si un gasto falla, se registra y sigue con los demás
+  end
+  JOB -> LOCK : liberar bloqueo
+end
+@enduml

@@ -1,0 +1,54 @@
+@startuml paquetes
+!pragma layout smetana
+!include _estilo.iuml
+title Diagrama de paquetes (casos de uso core)
+
+package "quickexpense-frontend (Next.js)" {
+  package "app/dashboard"
+  package "app/api/proxy"
+  package "components"
+  package "hooks"
+  package "utils"
+}
+
+package "quickexpense (backend Kotlin)" {
+  package "web" {
+    package "application.controller"
+    package "application.service.chat"
+    package "application.service.ai"
+    package "application.service.document"
+    package "application.service.recurring"
+    package "domain.chat"
+    package "infrastructure.security"
+    package "infrastructure.persistence"
+    package "infrastructure.config"
+  }
+  package "expense" {
+    package "application\n(create, recurring, account, document)"
+    package "domain\n(entity, recurrence, repository, service)"
+    package "request"
+  }
+}
+
+"app/dashboard" ..> "components"
+"app/dashboard" ..> "hooks"
+"hooks" ..> "utils"
+"utils" ..> "app/api/proxy"
+"app/api/proxy" ..> "application.controller" : HTTP (REST)
+
+"application.controller" ..> "application\n(create, recurring, account, document)"
+"application.controller" ..> "request"
+"application.controller" ..> "application.service.chat"
+"application.service.chat" ..> "application.service.ai"
+"application.service.chat" ..> "application.service.document"
+"application.service.chat" ..> "domain.chat"
+"application.service.ai" ..> "application\n(create, recurring, account, document)"
+"application.service.ai" ..> "domain.chat"
+"application.service.document" ..> "application\n(create, recurring, account, document)"
+"application.service.recurring" ..> "application\n(create, recurring, account, document)"
+"infrastructure.persistence" ..> "domain\n(entity, recurrence, repository, service)" : implementa los repositorios
+"application\n(create, recurring, account, document)" ..> "domain\n(entity, recurrence, repository, service)"
+"application\n(create, recurring, account, document)" ..> "request"
+"domain.chat" -[hidden]-> "application\n(create, recurring, account, document)"
+"infrastructure.persistence" -[hidden]-> "application.service.document"
+@enduml

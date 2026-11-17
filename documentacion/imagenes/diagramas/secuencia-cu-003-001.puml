@@ -1,0 +1,26 @@
+@startuml secuencia-cu-003-001
+!include _estilo.iuml
+title CU-003-001 Registrar movimiento mediante el chatbot: recepción del mensaje
+
+actor Usuario
+participant "Telegram" as TG
+participant "TelegramWebhook\nController" as WH
+participant "ChatService /\nTelegramChatIntegration" as CHAT
+database "PostgreSQL" as DB
+
+Usuario -> TG : envía mensaje (texto, audio, PDF o foto)
+TG -> WH : POST update (webhook)
+WH -> CHAT : routeAndProcess\nInboundMessage(mensaje)
+CHAT -> DB : buscar usuario por chat de Telegram
+alt usuario no vinculado, sin espacio predeterminado o sin membresía
+  CHAT -> TG : sendMessage(error)
+  TG -> Usuario : mensaje de error
+else usuario habilitado
+  opt el mensaje tiene adjuntos
+    ref over CHAT, DB : Procesar adjuntos
+  end
+  ref over CHAT, DB : Interpretar y registrar el movimiento
+  CHAT -> TG : sendMessage(respuesta)
+  TG -> Usuario : confirmación del movimiento registrado
+end
+@enduml

@@ -13,9 +13,9 @@ Cada dato citado en las secciones Respuesta se contrastó con su fuente original
 
 | Dato | Resultado |
 | --- | --- |
-| Inflación agosto 2026 (1,7% / 21,3% / 33,5%) | ✅ Confirmado en el informe técnico del INDEC (10/09/2026) |
+| Inflación septiembre 2026 (1,9% / 23,6% / 33,4%) | ✅ Confirmado en el informe técnico del INDEC (13/10/2026). Reemplaza el dato de agosto (1,7% / 21,3% / 33,5%) |
 | PBI 2º trimestre 2026 (−0,6%), consumo privado (−2,4%) | ✅ INDEC, Informe de avance del nivel de actividad |
-| EMAE julio 2026 (−2,9% mensual, −1,4% interanual) | ✅ INDEC. Se descartó "la mayor caída desde abril de 2020" (solo en una columna de opinión) |
+| EMAE agosto 2026 (+0,1% mensual, −1,7% interanual; julio revisado a −2,8% y −1,5%) | ✅ INDEC (21/10/2026). Reemplaza el dato de julio (−2,9% / −1,4%). Se descartó "la mayor caída desde abril de 2020" (solo en una columna de opinión) |
 | Desocupación 7,9% (2º trimestre 2026) | ✅ INDEC, EPH |
 | PBI 2025 +4,4% | ✅ Varios medios citando al INDEC (La Nación, 20/03/2026) |
 | Proyección 2026 | ⚠️ Solo 1,9% (Fundación Capital); el 2,4% se descartó |

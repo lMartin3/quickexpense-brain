@@ -13,6 +13,13 @@ references:
   title: "Competitive strategy: Techniques for analyzing industries and competitors"
   publisher: Free Press
 
+- id: porter1985
+  type: book
+  author: [{family: Porter, given: Michael E.}]
+  issued: {date-parts: [[1985]]}
+  title: "Competitive advantage: Creating and sustaining superior performance"
+  publisher: Free Press
+
 - id: kotler2016
   type: book
   author: [{family: Kotler, given: Philip}, {family: Keller, given: Kevin Lane}]
@@ -33,10 +40,10 @@ references:
 - id: indec2026ipc
   type: report
   author: [{literal: Instituto Nacional de Estadística y Censos}]
-  issued: {date-parts: [[2026, 9, 10]]}
-  title: "Índice de precios al consumidor (IPC). Agosto de 2026"
+  issued: {date-parts: [[2026, 10, 13]]}
+  title: "Índice de precios al consumidor (IPC). Septiembre de 2026"
   collection-title: Informes técnicos
-  URL: https://www.indec.gob.ar/uploads/informesdeprensa/ipc_09_26A1BE2DC4CD.pdf
+  URL: https://www.indec.gob.ar/uploads/informesdeprensa/ipc_10_268C45A9444C.pdf
 
 - id: indec2026pib
   type: report
@@ -49,10 +56,10 @@ references:
 - id: indec2026emae
   type: report
   author: [{literal: Instituto Nacional de Estadística y Censos}]
-  issued: {date-parts: [[2026, 9]]}
-  title: "Estimador mensual de actividad económica. Julio de 2026"
+  issued: {date-parts: [[2026, 10, 21]]}
+  title: "Estimador mensual de actividad económica. Agosto de 2026"
   collection-title: Informes técnicos
-  URL: https://www.indec.gob.ar/uploads/informesdeprensa/emae_09_26FE154D8FFE.pdf
+  URL: https://www.indec.gob.ar/uploads/informesdeprensa/emae_10_263A9DC1ED2B.pdf
 
 - id: indec2026eph
   type: report
@@ -300,6 +307,173 @@ references:
   title: "Mobile marketing benchmarks: Know what good performance looks like in 2026"
   container-title: Promodo
   URL: https://www.promodo.com/blog/mobile-marketing-benchmarks
+
+# --- Plan de marketing, financiero y factibilidades (25/10/2026) ---------------------------
+- id: rayport2004
+  type: book
+  author: [{family: Rayport, given: Jeffrey F.}, {family: Jaworski, given: Bernard J.}]
+  issued: {date-parts: [[2004]]}
+  title: Introduction to e-commerce
+  edition: "2"
+  publisher: McGraw-Hill/Irwin
+
+- id: anthropic2026precios
+  type: webpage
+  author: [{literal: Anthropic}]
+  title: Pricing
+  container-title: Claude Developer Platform
+  URL: https://platform.claude.com/docs/en/about-claude/pricing
+  accessed: {date-parts: [[2026, 10, 25]]}
+
+- id: openai-whisper
+  type: webpage
+  author: [{literal: OpenAI}]
+  title: "Whisper (whisper-1)"
+  container-title: OpenAI API documentation
+  URL: https://developers.openai.com/api/docs/models/whisper-1
+  accessed: {date-parts: [[2026, 10, 25]]}
+
+- id: aiweekly2026jev
+  type: post-weblog
+  author: [{literal: AI Weekly}]
+  title: "TypeSafe AI's Jev outputs numbers, not text, at $0.042/M input"
+  container-title: AI Weekly
+  URL: https://aiweekly.co/alerts/typesafe-ais-jev-outputs-numbers-not-text-at-0042m-input
+  accessed: {date-parts: [[2026, 10, 25]]}
+
+- id: meta2026whatsapp
+  type: webpage
+  author: [{literal: Meta}]
+  title: Pricing on the WhatsApp Business Platform
+  container-title: Meta for Developers
+  URL: https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing
+  accessed: {date-parts: [[2026, 10, 25]]}
+
+- id: zernio2026whatsapp
+  type: webpage
+  author: [{literal: Zernio}]
+  title: "WhatsApp API pricing calculator (October 2026 rates)"
+  URL: https://zernio.com/whatsapp-api-pricing
+  accessed: {date-parts: [[2026, 10, 25]]}
+
+- id: mercadopago2026costos
+  type: webpage
+  author: [{literal: Mercado Pago}]
+  title: Costos por cobrar con Mercado Pago
+  URL: https://www.mercadopago.com.ar/costs-section/
+  accessed: {date-parts: [[2026, 10, 25]]}
+
+- id: eleconomista2026dolar
+  type: article-newspaper
+  author: [{literal: El Economista}]
+  issued: {date-parts: [[2026, 10, 20]]}
+  title: "Dólar hoy y dólar blue, EN VIVO: a cuánto cotiza el oficial y cuál es el precio del paralelo, minuto a minuto, este 20 de octubre"
+  container-title: El Economista
+  URL: https://eleconomista.com.ar/economia/dolar-hoy-cuanto-cotiza-martes-20-octubre-n99012
+
+- id: calcularsueldo2026monotributo
+  type: article-newspaper
+  author: [{literal: Calcular Sueldo}]
+  issued: {date-parts: [[2026, 7, 20]]}
+  title: ARCA confirmó los valores oficiales del monotributo desde agosto 2026
+  container-title: Calcular Sueldo
+  URL: https://calcularsueldo.com.ar/?p=15434
+
+- id: contadoresenred2026iibb
+  type: article-newspaper
+  author: [{literal: Contadores en Red}]
+  issued: {date-parts: [[2026, 7, 27]]}
+  title: "Santa Fe: API actualiza las escalas del Régimen Simplificado de Ingresos Brutos"
+  container-title: Contadores en Red
+  URL: https://contadoresenred.com/santa-fe-api-actualiza-las-escalas-del-regimen-simplificado-de-ingresos-brutos/
+
+- id: rosario2026drei
+  type: webpage
+  author: [{literal: Municipalidad de Rosario}]
+  title: Preguntas frecuentes sobre DReI
+  URL: https://www.rosario.gob.ar/inicio/preguntas-frecuentes-sobre-drei
+  accessed: {date-parts: [[2026, 10, 25]]}
+
+- id: olveira2026honorarios
+  type: article-newspaper
+  author: [{family: Olveira, given: Dolores}]
+  issued: {date-parts: [[2026, 1, 26]]}
+  title: "Cuánto cuesta recategorizarse en el Monotributo: los nuevos honorarios que manejan los contadores"
+  container-title: iProfesional
+  URL: https://www.iprofesional.com/impuestos/446833-recategorizacion-monotributo-nuevos-honorarios-contadores
+
+- id: inpi2026res75
+  type: legislation
+  author: [{literal: Instituto Nacional de la Propiedad Industrial}]
+  issued: {date-parts: [[2026, 3, 20]]}
+  title: Resolución 75/2026
+  URL: https://www.argentina.gob.ar/normativa/nacional/norma-424092/texto
+
+- id: beccar2026umapi
+  type: post-weblog
+  author: [{literal: Beccar Varela}]
+  issued: {date-parts: [[2026, 4, 6]]}
+  title: Actualización de aranceles del INPI y creación de la Unidad de Medida Arancelaria de la Propiedad Industrial (UMAPI)
+  URL: https://beccarvarela.com/novedades/actualizacion-de-aranceles-del-inpi-y-creacion-de-la-unidad-de-medida-arancelaria-de-la-propiedad-industrial-umapi/
+
+- id: fred2026dgs10
+  type: dataset
+  author: [{literal: Board of Governors of the Federal Reserve System}]
+  title: Market yield on U.S. Treasury securities at 10-year constant maturity, quoted on an investment basis (DGS10)
+  publisher: Federal Reserve Bank of St. Louis (FRED)
+  URL: https://fred.stlouisfed.org/series/DGS10
+  accessed: {date-parts: [[2026, 10, 25]]}
+
+- id: damodaran2026ctryprem
+  type: dataset
+  author: [{family: Damodaran, given: Aswath}]
+  issued: {date-parts: [[2026, 1, 5]]}
+  title: Country default spreads and risk premiums
+  publisher: NYU Stern School of Business
+  URL: https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html
+
+- id: noticiasnqn2026riesgo
+  type: article-newspaper
+  author: [{literal: NoticiasNQN}]
+  issued: {date-parts: [[2026, 10, 19]]}
+  title: El riesgo país subió a 675 puntos y alcanzó su nivel más alto de 2026
+  container-title: NoticiasNQN
+  URL: https://www.noticiasnqn.com.ar/noticias/2026/10/19/357254-el-riesgo-pais-subio-a-675-puntos-y-alcanzo-su-nivel-mas-alto-de-2026
+
+- id: ley24977
+  type: legislation
+  author: [{literal: Congreso de la Nación Argentina}]
+  issued: {date-parts: [[1998]]}
+  title: "Ley 24.977. Régimen Simplificado para Pequeños Contribuyentes (Anexo, texto según Ley 26.565)"
+  URL: https://biblioteca.afip.gob.ar/pdfp/LEY25865_ANEXO.pdf
+
+- id: ley22362
+  type: legislation
+  author: [{literal: Congreso de la Nación Argentina}]
+  issued: {date-parts: [[1980]]}
+  title: "Ley 22.362. Marcas y designaciones"
+  URL: https://www.argentina.gob.ar/normativa/nacional/18803/texto
+
+- id: ley11723
+  type: legislation
+  author: [{literal: Congreso de la Nación Argentina}]
+  issued: {date-parts: [[1933]]}
+  title: "Ley 11.723. Régimen legal de la propiedad intelectual (modificada por la Ley 25.036, que incluye los programas de computación)"
+  URL: https://www.argentina.gob.ar/normativa/nacional/ley-11723-42755
+
+- id: ley24240
+  type: legislation
+  author: [{literal: Congreso de la Nación Argentina}]
+  issued: {date-parts: [[1993]]}
+  title: "Ley 24.240. Defensa del consumidor"
+  URL: https://www.argentina.gob.ar/normativa/nacional/ley-24240-638
+
+- id: res316-2018
+  type: legislation
+  author: [{literal: Secretaría de Comercio}]
+  issued: {date-parts: [[2018]]}
+  title: "Resolución 316/2018. Botón de baja de servicios en los sitios web de los proveedores"
+  URL: https://www.argentina.gob.ar/node/86755
 ---
 
 # Referencias

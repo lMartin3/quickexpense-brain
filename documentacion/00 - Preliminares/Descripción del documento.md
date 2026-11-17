@@ -29,8 +29,7 @@ Una tabla corta con los metadatos del documento.
 
 ## Preguntas abiertas y observaciones
 
-- ¿Fecha de creación del documento?
-- ¿El título del documento es el nombre del proyecto o el de la materia?
+- Resuelto (06/10/2026): título "Proyecto Final de Ingeniería en Sistemas Informáticos", creado el 14/04/2026. Última actualización: fecha de la entrega de TFI (27/10/2026).
 
 ## Respuesta
 
@@ -41,4 +40,4 @@ Una tabla corta con los metadatos del documento.
 | Título del documento | Proyecto Final de Ingeniería en Sistemas Informáticos |
 | Autor | Luraschi, Martín |
 | Fecha de Creación | 14 de abril de 2026 |
-| Última Actualización | 6 de octubre de 2026 |
+| Última Actualización | 27 de octubre de 2026 |

@@ -1,0 +1,81 @@
+@startuml
+!pragma layout smetana
+!include _estilo.iuml
+hide circle
+
+entity users {
+  * id : varchar(255) <<PK>>
+  --
+  email : varchar(255)
+  * email_verified : boolean
+  display_name : varchar(200)
+  * created_at : timestamp
+  * last_seen_at : timestamp
+}
+
+entity user_settings {
+  * id : varchar(255) <<PK>>
+  --
+  telegram_id : varchar(255) <<UQ>>
+  default_chatbot_workspace_id : varchar(255)
+  ui_language : varchar(2)
+}
+
+entity workspaces {
+  * id : varchar(255) <<PK>>
+  --
+  * name : varchar(255)
+  description : varchar(255)
+  * hex_color : varchar(255)
+  * owner_id : varchar(255)
+  * time_zone : varchar(255)
+}
+
+entity workspace_members {
+  * workspace_id : varchar(255) <<PK, FK>>
+  * user_id : varchar(255) <<PK>>
+  --
+  * role : varchar(255)
+}
+
+entity documents {
+  * id : varchar(255) <<PK>>
+  --
+  * filename : varchar(255)
+  * filesize_bytes : bigint
+  * document_type : smallint
+  * mime_type : varchar(255)
+  * upload_time : bigint
+  summary : text
+  content : text
+  * workspace_id : varchar(255) <<FK>>
+}
+
+entity chat_messages {
+  * id : varchar(255) <<PK>>
+  --
+  * timestamp : bigint
+  * message : text
+  * author : varchar(255)
+  * user_id : varchar(255)
+  * workspace_id : varchar(255)
+  chat_platform : varchar(255)
+  metadata : jsonb
+}
+
+entity chat_messages_documents {
+  * chat_message_entity_id : varchar(255) <<FK>>
+  * documents_id : varchar(255) <<FK, UQ>>
+}
+
+workspaces ||--o{ workspace_members
+workspaces ||--o{ documents
+chat_messages ||--o{ chat_messages_documents
+documents ||--o| chat_messages_documents
+users ||..o| user_settings
+users ||..o{ workspace_members
+users ||..o{ workspaces : propietario
+users ||..o{ chat_messages
+workspaces ||..o{ chat_messages
+workspaces |o..o{ user_settings : por defecto
+@enduml

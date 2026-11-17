@@ -1,0 +1,65 @@
+@startuml componentes
+!pragma layout smetana
+!include _estilo.iuml
+skinparam componentStyle uml2
+title Diagrama de componentes (casos de uso core)
+
+actor Usuario
+[Telegram Bot API\n«externo»] as TG
+
+package "Frontend (Next.js)" {
+  [Aplicación web\n(páginas y formularios)] as UI
+  [NextAuth] as NA
+  [Proxy de API\n(/api/proxy)] as PX
+}
+
+package "Backend (Spring Boot)" {
+  [API REST\n(controladores)] as API
+  [Integración con Telegram] as TGI
+  [Tarea programada\n(ShedLock)] as JOB
+  [Seguridad multiespacio\n(JWT, X-Workspace, RLS)] as SEC
+  [Asistente de IA\n(Spring AI y herramientas)] as AS
+  [Procesamiento de documentos\n(PDF, audio, imagen)] as DP
+  [Contabilidad\n(asientos por partida doble)] as CONT
+  [Gastos recurrentes\n(alta, ocurrencias, confirmación)] as REC
+  [Almacenamiento de archivos] as STO
+  [Persistencia (JPA)] as PERS
+}
+
+package "Servicios de terceros" {
+  [Keycloak\n«autoalojado»] as KC
+  database "PostgreSQL\n«autoalojado»" as DB
+  [RustFS (S3)\n«autoalojado»] as S3
+  [API de Anthropic\n«externo»] as ANT
+  [API de OpenAI\n«externo»] as OAI
+}
+
+Usuario --> UI : navegador
+Usuario --> TG : chat
+UI --> NA : inicio de sesión
+UI --> PX : REST
+NA --> KC : OpenID Connect
+PX --> KC : renovación del token
+
+TG --> TGI : mensajes entrantes\n(webhook o polling)
+TGI --> TG : respuestas y archivos
+API --> SEC
+API --> CONT
+API --> REC
+TGI --> DP
+TGI --> AS
+JOB --> REC
+SEC --> KC : claves del JWT
+AS --> CONT : herramientas
+AS --> REC : herramientas
+AS --> ANT : modelo de lenguaje
+AS --> PERS : historial
+DP --> ANT : visión y resumen
+DP --> OAI : transcripción
+DP --> STO
+CONT --> PERS
+REC --> PERS
+PERS --> DB
+STO --> S3
+PX --> API : REST + token
+@enduml

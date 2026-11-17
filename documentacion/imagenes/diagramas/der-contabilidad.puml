@@ -1,0 +1,122 @@
+@startuml
+!pragma layout smetana
+!include _estilo.iuml
+hide circle
+
+entity accounts {
+  * id : varchar(255) <<PK>>
+  --
+  * name : varchar(255)
+  description : varchar(255)
+  * currency : varchar(255)
+  * account_type : smallint
+  account_flag : varchar(255)
+  category_id : varchar(255) <<FK>>
+  * workspace_id : varchar(255) <<FK>>
+}
+
+entity account_categories {
+  * id : varchar(255) <<PK>>
+  --
+  * name : varchar(255)
+  description : varchar(255)
+  hex_color : varchar(255)
+  * workspace_id : varchar(255) <<FK>>
+}
+
+entity journal_categories {
+  * id : varchar(255) <<PK>>
+  --
+  * name : varchar(255)
+  description : varchar(255)
+  hex_color : varchar(255)
+  * workspace_id : varchar(255) <<FK>>
+}
+
+entity journal_entries {
+  * id : varchar(255) <<PK>>
+  --
+  * date : timestamp
+  * description : varchar(255)
+  * creation_date : timestamp
+  * modification_date : timestamp
+  category_id : varchar(255) <<FK>>
+  * workspace_id : varchar(255) <<FK>>
+}
+
+entity postings {
+  * id : varchar(255) <<PK>>
+  --
+  * account_id : varchar(255)
+  * amount : decimal
+  * is_debit : boolean
+  * workspace_id : varchar(255)
+}
+
+entity journal_entries_postings {
+  * journal_entry_entity_id : varchar(255) <<FK>>
+  * postings_id : varchar(255) <<FK, UQ>>
+}
+
+entity recurring_expenses {
+  * id : varchar(255) <<PK>>
+  --
+  * workspace_id : varchar(255) <<FK>>
+  * name : varchar(255)
+  description : varchar(255)
+  * source_account_id : varchar(255) <<FK>>
+  * destination_account_id : varchar(255) <<FK>>
+  * amount : decimal
+  * currency : varchar(3)
+  * recurrence_frequency : varchar(255)
+  * recurrence_interval : integer
+  recurrence_days : varchar(255)
+  recurrence_month : varchar(255)
+  * end_type : varchar(255)
+  end_date : date
+  end_count : integer
+  * start_date : date
+  * cost_type : varchar(255)
+  * active : boolean
+  journal_category_id : varchar(255) <<FK>>
+  estimation_type : varchar(255)
+  estimation_percentage : decimal
+  * lead_days : integer
+  * materialize_from : date
+  materialized_until : date
+}
+
+entity recurring_expense_instances {
+  * id : varchar(255) <<PK>>
+  --
+  * workspace_id : varchar(255) <<FK>>
+  * recurring_expense_id : varchar(255) <<FK, UQ>>
+  * estimated_date : date <<UQ>>
+  * status : varchar(255)
+  real_amount : decimal
+  journal_entry_id : varchar(255) <<FK>>
+  real_date : date
+}
+
+entity workspaces {
+  * id : varchar(255) <<PK>>
+}
+
+workspaces ||--o{ account_categories
+workspaces ||--o{ journal_categories
+workspaces ||--o{ accounts
+workspaces ||--o{ journal_entries
+workspaces ||--o{ recurring_expenses
+workspaces ||--o{ recurring_expense_instances
+account_categories |o--o{ accounts
+journal_categories |o--o{ journal_entries
+journal_categories |o--o{ recurring_expenses
+journal_entries ||--o{ journal_entries_postings
+postings ||--o| journal_entries_postings
+accounts ||--o{ recurring_expenses : origen
+accounts ||--o{ recurring_expenses : destino
+recurring_expenses ||--o{ recurring_expense_instances
+journal_entries |o--o{ recurring_expense_instances
+accounts ||..o{ postings
+workspaces ||..o{ postings
+@enduml

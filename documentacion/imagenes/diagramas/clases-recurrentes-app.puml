@@ -1,0 +1,101 @@
+@startuml
+!pragma layout smetana
+!include _estilo.iuml
+hide empty attributes
+skinparam classAttributeIconSize 0
+
+package "web.application.controller" as pctl {
+  class RecurringExpenseController {
+    +getRecurringExpenses()
+    +getRecurringExpenseById(id)
+    +createRecurringExpense(request)
+    +updateRecurringExpense(id, request)
+    +deleteRecurringExpense(id)
+    +getInstances(id)
+    +getInstanceById(id, instanceId)
+    +createInstance(id, request)
+    +updateInstance(id, instanceId, request)
+  }
+}
+
+package "web.application.service.recurring" as pjob {
+  class RecurringExpenseMaterializationJob {
+    +run()
+  }
+}
+
+package "expense.application.recurring" as papp {
+  class RecurringExpenseService {
+    +findAll(): List<RecurringExpense>
+    +findById(id): RecurringExpense
+    +create(request): RecurringExpense
+    +update(id, request): RecurringExpense
+    +delete(id)
+  }
+  class RecurringExpenseInstanceService {
+    +findAll(expenseId): List<RecurringExpenseInstance>
+    +findById(expenseId, instanceId): RecurringExpenseInstance
+    +create(expenseId, request): RecurringExpenseInstance
+    +update(expenseId, instanceId, request)
+  }
+  class RecurringExpenseMaterializer {
+    +today(workspaceId): LocalDate
+    +reconcile(expense): RecurringExpense
+    +materializeDue(id)
+    +materializeAllDue()
+  }
+}
+
+package "expense.domain.service" as pds {
+  interface TransactionRunner {
+    +inTransaction(block: () -> T): T
+  }
+}
+
+package "expense.domain.repository" as prepo {
+  interface RecurringExpenseRepository {
+    +findByIdForUpdate(id)
+    +findAllActiveIds()
+    +existsByAccountId(accountId)
+    +existsByJournalCategoryId(categoryId)
+  }
+  interface RecurringExpenseInstanceRepository {
+    +findAllByRecurringExpenseId(id)
+    +findByRecurringExpenseIdAndEstimatedDate(id, date)
+    +saveMissing(instances)
+  }
+}
+
+package "web.infrastructure.persistence" as ppers {
+  class RecurringExpenseSQLRepository
+  class RecurringExpenseInstanceSQLRepository
+  class SpringTransactionRunner
+}
+
+package "expense.domain.entity" as pent {
+  class RecurringExpense
+  class RecurringExpenseInstance
+}
+
+RecurringExpenseController --> RecurringExpenseService
+RecurringExpenseController --> RecurringExpenseInstanceService
+RecurringExpenseMaterializationJob --> RecurringExpenseMaterializer : @Scheduled + ShedLock
+
+RecurringExpenseService --> RecurringExpenseRepository
+RecurringExpenseService --> RecurringExpenseMaterializer
+RecurringExpenseService --> TransactionRunner
+RecurringExpenseInstanceService --> RecurringExpenseInstanceRepository
+RecurringExpenseInstanceService --> RecurringExpenseService
+RecurringExpenseMaterializer --> RecurringExpenseInstanceRepository
+RecurringExpenseMaterializer --> RecurringExpenseRepository
+RecurringExpenseMaterializer --> TransactionRunner
+
+RecurringExpenseSQLRepository .up.|> RecurringExpenseRepository
+RecurringExpenseInstanceSQLRepository .up.|> RecurringExpenseInstanceRepository
+SpringTransactionRunner .up.|> TransactionRunner
+
+RecurringExpense "1" *-- "*" RecurringExpenseInstance
+RecurringExpenseMaterializer ..> RecurringExpenseInstance : crea PENDING
+RecurringExpenseService ..> RecurringExpense : crea
+RecurringExpenseRepository -[hidden]down- RecurringExpenseInstanceRepository
+@enduml

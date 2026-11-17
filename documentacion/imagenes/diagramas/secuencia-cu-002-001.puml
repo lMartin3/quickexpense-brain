@@ -1,0 +1,45 @@
+@startuml secuencia-cu-002-001
+!include _estilo.iuml
+title CU-002-001 Registrar movimiento desde la aplicación web
+
+actor Usuario
+participant "Frontend\n(EditJournal)" as FE
+participant "Proxy Next.js\n/api/proxy" as PX
+participant "Filtros de\nseguridad" as SEC
+participant "Journal\nController" as CTRL
+participant "JournalEntry\nService" as JES
+database "PostgreSQL" as DB
+
+Usuario -> FE : completa fecha, descripción\ny partidas, y confirma
+FE -> PX : POST /api/proxy/journal/entries\n(cabecera X-Workspace, apiFetch)
+PX -> PX : agregar token de acceso\n(lo renueva si vence)
+PX -> SEC : POST /journal/entries
+SEC -> SEC : validar JWT (Keycloak) y\nmembresía al espacio
+alt token inválido o sin membresía
+  SEC --> PX : 401 / 403
+  PX --> FE : error
+  FE --> Usuario : mensaje de error
+end
+SEC -> CTRL : createJournalEntry(solicitud)
+CTRL -> JES : createJournalEntry(solicitud)
+JES -> DB : leer cuentas de las partidas
+JES -> JES : JournalEntry.create\ny verifyJournalEntry
+note left of JES
+  cuentas sin repetir y del mismo espacio;
+  misma moneda: suma cero;
+  multimoneda: dos partidas como máximo;
+  ingreso sin débito, gasto sin crédito
+end note
+alt regla de negocio incumplida
+  JES --> CTRL : DomainException
+  CTRL --> FE : 400 (mensaje)
+  FE --> Usuario : muestra el error
+else asiento válido
+  JES -> DB : guardar asiento y partidas (RLS por espacio)
+  JES --> CTRL : asiento
+  CTRL --> PX : 200 (asiento)
+  PX --> FE : 200 (asiento)
+  FE -> FE : invalidar consultas en caché
+  FE --> Usuario : aviso de éxito y vuelve al libro diario
+end
+@enduml

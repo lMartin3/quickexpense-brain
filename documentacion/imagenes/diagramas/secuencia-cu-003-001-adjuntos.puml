@@ -1,0 +1,34 @@
+@startuml secuencia-cu-003-001-adjuntos
+!include _estilo.iuml
+title CU-003-001: procesar adjuntos
+
+participant "ChatService" as CHAT
+participant "Telegram" as TG
+participant "DocumentProcessing\nService" as DPS
+participant "APIs de IA\n(OpenAI / Anthropic)" as IA
+participant "DocumentService" as DOC
+database "PostgreSQL" as DB
+participant "S3" as S3
+
+CHAT -> CHAT : verificar tamaño de los adjuntos
+loop por cada adjunto
+  CHAT -> TG : getFile (descarga)
+  TG --> CHAT : bytes
+  CHAT -> DPS : processDocument(archivo, tipo MIME)
+  alt PDF
+    DPS -> DPS : extraer texto (PDFBox)
+  else audio
+    DPS -> IA : transcribir (OpenAI whisper-1)
+    IA --> DPS : transcripción
+  else imagen
+    DPS -> IA : transcribir ticket (visión de Anthropic)
+    IA --> DPS : texto del ticket
+  end
+  DPS -> IA : resumir contenido (Anthropic)
+  IA --> DPS : resumen
+  DPS --> CHAT : Document
+  CHAT -> DOC : saveDocument(Document)
+  DOC -> DB : guardar documento
+  DOC -> S3 : guardar archivo
+end
+@enduml

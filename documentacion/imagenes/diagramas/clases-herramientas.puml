@@ -1,0 +1,57 @@
+@startuml
+!pragma layout smetana
+!include _estilo.iuml
+hide empty attributes
+left to right direction
+skinparam classAttributeIconSize 0
+
+package "web.application.service.ai.user" as pu {
+  class AssistantService
+  class ReadAiToolAdapter {
+    +getAccounts(toolContext): List<Account>
+    +getAccountBalances(toolContext): Map<String, BigDecimal>
+    +getAccountJournalEntries(toolContext): List<JournalEntry>
+    +getJournalEntryCategories(toolContext): List<JournalCategory>
+    +getRecurringExpenses(toolContext): List<RecurringExpenseResponse>
+    +getRecurringExpenseInstances(request, toolContext)
+  }
+  class WriteAiToolAdapter {
+    +createAccount(request, toolContext): Account
+    +createJournalEntry(request, toolContext): JournalEntry
+    +updateJournalEntry(request, toolContext): JournalEntry
+    +createRecurringExpense(request, toolContext): RecurringExpenseResponse
+    +updateRecurringExpenseInstance(request, toolContext)
+  }
+}
+
+package "web.infrastructure.config" as pcfg {
+  class AiToolSecurityAspect {
+    +wrapWithSecurityContext(joinPoint): Any?
+  }
+}
+
+package "expense.application" as pa {
+  class JournalEntryService {
+    +createJournalEntry(request): JournalEntry
+  }
+  class AccountService
+}
+
+package "expense.application.recurring" as pr {
+  class RecurringExpenseService
+  class RecurringExpenseInstanceService
+}
+
+AssistantService --> ReadAiToolAdapter
+AssistantService --> WriteAiToolAdapter
+AiToolSecurityAspect ..> ReadAiToolAdapter : intercepta @Tool
+AiToolSecurityAspect ..> WriteAiToolAdapter : intercepta @Tool
+ReadAiToolAdapter --> JournalEntryService
+ReadAiToolAdapter --> AccountService
+ReadAiToolAdapter --> RecurringExpenseService
+ReadAiToolAdapter --> RecurringExpenseInstanceService
+WriteAiToolAdapter --> JournalEntryService
+WriteAiToolAdapter --> AccountService
+WriteAiToolAdapter --> RecurringExpenseService
+WriteAiToolAdapter --> RecurringExpenseInstanceService
+@enduml

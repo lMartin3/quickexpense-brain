@@ -1,0 +1,65 @@
+@startuml
+!pragma layout smetana
+!include _estilo.iuml
+hide empty attributes
+skinparam classAttributeIconSize 0
+
+package "web.application.service.ai.user" as pu {
+  class AssistantService {
+    +processMessage(request: AssistantRequest): String
+  }
+  class ReadAiToolAdapter
+  class WriteAiToolAdapter
+}
+
+package "web.application.service.ai" as pai {
+  class AiMemory {
+    +add(conversationId: String, messages: List<Message>)
+    +get(conversationId: String): List<Message>
+    +clear(conversationId: String)
+  }
+}
+
+package "web.domain.assistant" as pas {
+  class AssistantRequest {
+    +userId: UserId
+    +workspaceId: WorkspaceId
+    +userMesssage: String?
+    +attachments: List<AssistantRequestAttachment>
+    +platform: ChatPlatform
+  }
+}
+
+package "web.domain.chat" as pch {
+  class ChatMessage
+  interface ChatMessageRepository {
+    +findLastMessagesByUserIdAndWorkspaceIdOldestFirst(...): List<ChatMessage>
+    +findLastMessagesByUserIdAndWorkspaceIdAfterTimestamp(...): List<ChatMessage>
+    +save(message: ChatMessage)
+  }
+}
+
+package "web.infrastructure.persistence" as pp {
+  class ChatMessageSQLRepository
+}
+
+package "expense.application" as pa {
+  class UserSettingsService
+}
+
+package "Spring AI" as psp <<Rectangle>> {
+  interface ChatMemory
+  class ChatClient
+}
+
+AssistantService ..> AssistantRequest
+AssistantService --> AiMemory
+AssistantService --> UserSettingsService
+AssistantService --> ChatClient : usa
+AssistantService --> ReadAiToolAdapter : herramientas
+AssistantService --> WriteAiToolAdapter : herramientas
+AiMemory .up.|> ChatMemory
+AiMemory --> ChatMessageRepository
+ChatMessageSQLRepository .up.|> ChatMessageRepository
+ChatMessageRepository ..> ChatMessage
+@enduml

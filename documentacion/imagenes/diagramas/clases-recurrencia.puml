@@ -1,0 +1,74 @@
+@startuml
+!pragma layout smetana
+!include _estilo.iuml
+hide empty methods
+skinparam classAttributeIconSize 0
+
+package "expense.domain.entity" as pent {
+  class RecurringExpense {
+    +recurrenceRule: RecurrenceRule
+    +recurrenceEnd: RecurrenceEnd
+    +startDate: LocalDate
+    +schedule: RecurrenceSchedule
+  }
+}
+
+package "expense.domain.recurrence" as prec {
+  class RecurrenceSchedule {
+    +rule: RecurrenceRule
+    +startDate: LocalDate
+    +end: RecurrenceEnd
+    +occurrences(from: LocalDate, to: LocalDate): List<LocalDate>
+    +isOccurrence(date: LocalDate): Boolean
+  }
+
+  interface RecurrenceRule <<sealed>> {
+    +interval: Int
+  }
+  class EveryNDays
+  class EveryNWeeks
+  class EveryNMonths {
+    +days: Set<MonthDay>
+  }
+  class EveryNYears {
+    +month: Month
+    +day: MonthDay
+  }
+
+  interface RecurrenceEnd <<sealed>>
+  class Never <<object>>
+  class Until {
+    +date: LocalDate
+  }
+  class AfterOccurrences {
+    +count: Int
+  }
+
+  interface MonthDay <<sealed>> {
+    +resolveIn(month: YearMonth): LocalDate
+  }
+  class Fixed {
+    +day: Int
+  }
+  class Last <<object>>
+}
+
+EveryNDays .up.|> RecurrenceRule
+EveryNWeeks .up.|> RecurrenceRule
+EveryNMonths .up.|> RecurrenceRule
+EveryNYears .up.|> RecurrenceRule
+Never .up.|> RecurrenceEnd
+Until .up.|> RecurrenceEnd
+AfterOccurrences .up.|> RecurrenceEnd
+Fixed .up.|> MonthDay
+Last .up.|> MonthDay
+
+
+RecurringExpense *-- "1" RecurrenceRule
+RecurringExpense *-- "1" RecurrenceEnd
+RecurringExpense ..> RecurrenceSchedule : schedule
+RecurrenceSchedule o-- RecurrenceRule
+RecurrenceSchedule o-- RecurrenceEnd
+EveryNMonths o-- "1..*" MonthDay
+EveryNYears o-- "1" MonthDay
+@enduml

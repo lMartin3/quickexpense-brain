@@ -1,0 +1,46 @@
+@startuml
+!pragma layout smetana
+!include _estilo.iuml
+hide empty attributes
+left to right direction
+skinparam classAttributeIconSize 0
+
+package "web.application.service.chat.telegram" as ptg {
+  class TelegramChatIntegration {
+    -maxAttachmentSizeBytes: Long
+    +supports(): ChatPlatform
+    +process(incoming): Result<ProcessedMessageAndAttachments>
+    +send(outbound): Result<Unit>
+  }
+  class TelegramFileService {
+    +downloadFile(fileId): ByteArray?
+  }
+  class TelegramChatClient {
+    +sendMessage(chatId, text): Result<Unit>
+  }
+}
+
+package "web.application.service.chat" as pchat {
+  interface ChatIntegration
+}
+
+package "web.domain.chat.exchange" as pex {
+  interface InboundChatMessage
+}
+
+package "expense.application" as papp {
+  class UserSettingsService {
+    +getUserSettingsByTelegramIdInternal(telegramId)
+    +saveUserSettings(userSettings)
+  }
+}
+
+class DocumentProcessingService
+
+TelegramChatIntegration .up.|> ChatIntegration
+TelegramChatIntegration --> TelegramFileService
+TelegramChatIntegration --> TelegramChatClient
+TelegramChatIntegration --> UserSettingsService
+TelegramChatIntegration --> DocumentProcessingService
+TelegramChatIntegration ..> InboundChatMessage
+@enduml

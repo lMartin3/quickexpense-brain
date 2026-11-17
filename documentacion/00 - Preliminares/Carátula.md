@@ -27,8 +27,8 @@ logo de la universidad, nombre del proyecto, apellido y nombre del alumno, legaj
 
 ## Preguntas abiertas y observaciones
 
-- **Fecha:** ¿la fecha de cada entrega o una fecha fija?
-- La carátula del Parcial decía a la vez "PARCIAL 2" y "PARCIAL 1". ¿Qué tiene que decir la versión actual?
+- **Fecha:** la de cada entrega. Entrega de TFI: 27/10/2026 (decisión del autor, 26/10/2026).
+- La carátula del Parcial decía a la vez "PARCIAL 2" y "PARCIAL 1". La versión actual no lleva número de parcial; la materia pasó a ser **Trabajo Final de Ingeniería** (26/10/2026).
 
 ## Respuesta
 
@@ -39,10 +39,10 @@ logo de la universidad, nombre del proyecto, apellido y nombre del alumno, legaj
 | Universidad | Universidad Abierta Interamericana |
 | Facultad | Facultad de Tecnología Informática |
 | Carrera | Ingeniería en Sistemas Informáticos |
-| Materia | Seminario de Trabajo Final de Ingeniería |
+| Materia | Trabajo Final de Ingeniería |
 | Nombre del proyecto | Quickexpense |
 | Alumno | Luraschi, Martín |
 | Legajo | B00067498-T1 |
 | Sede / localización | Regional Rosario |
 | Docentes | Banega, Matias Pablo; Sartorio, Alejandro Roberto |
-| Fecha | 6 de octubre de 2026 |
+| Fecha | 27 de octubre de 2026 |

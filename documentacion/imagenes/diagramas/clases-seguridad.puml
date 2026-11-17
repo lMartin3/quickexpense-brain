@@ -1,0 +1,58 @@
+@startuml
+!pragma layout smetana
+!include _estilo.iuml
+hide empty attributes
+skinparam classAttributeIconSize 0
+
+package "web.infrastructure.security" as psec {
+  class WorkspaceAuthenticationFilter {
+    #doFilterInternal(request, response, chain)
+  }
+  class AuthenticatedUserSyncFilter {
+    #doFilterInternal(request, response, chain)
+  }
+}
+
+package "expense.application" as papp {
+  class UserService {
+    +recordAuthenticatedUser(request): User
+    +getCurrentUser(): User
+  }
+}
+
+package "web.infrastructure.config" as pcfg {
+  class AiToolSecurityAspect {
+    +wrapWithSecurityContext(joinPoint): Any?
+  }
+}
+
+package "web.application.service" as psvc {
+  class AuthenticationService
+}
+
+package "web.infrastructure.cache" as pcache {
+  class UserWorkspaceCache {
+    +getWorkspaces(userId: UserId): List<Workspace>
+    +evict(userId: UserId)
+    +clear()
+  }
+}
+
+package "expense.domain.service" as pds {
+  interface UserContextProvider {
+    +getCurrentUserId(): UserId
+    +getCurrentUserFullName(): String
+    +getCurrentUserWorkspaceId(): WorkspaceId?
+    +canUserAccessData(targetDataOwner: UserId): Boolean
+    +canReadWorkspaceData(targetDataOwner: WorkspaceId): Boolean
+    +canWriteWorkspaceData(targetDataOwner: WorkspaceId): Boolean
+  }
+}
+
+AuthenticationService .up.|> UserContextProvider
+WorkspaceAuthenticationFilter --> UserContextProvider
+WorkspaceAuthenticationFilter --> UserWorkspaceCache
+AiToolSecurityAspect --> UserWorkspaceCache
+AuthenticatedUserSyncFilter --> UserService
+UserService --> UserContextProvider
+@enduml

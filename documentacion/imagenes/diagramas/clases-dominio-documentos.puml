@@ -1,0 +1,68 @@
+@startuml
+!pragma layout smetana
+!include _estilo.iuml
+hide empty methods
+skinparam classAttributeIconSize 0
+
+package "expense.domain.entity" as pent {
+  interface WorkspaceOwned {
+    +workspaceId: WorkspaceId
+  }
+  class Workspace
+  class User
+  class Document {
+    +id: DocumentId
+    +workspaceId: WorkspaceId
+    +filename: String
+    +filesizeBytes: Long
+    +type: DocumentType
+    +mimeType: String
+    +uploadTime: Long
+    +summary: String?
+    +content: String?
+  }
+
+  enum DocumentType {
+    PDF
+    IMAGE
+    AUDIO
+    SPREADSHEET
+    TEXT
+    UNKNOWN
+  }
+}
+
+package "web.domain.chat" as pchat {
+  class ChatMessage {
+    +id: ChatMessageId
+    +timestamp: Long
+    +message: String
+    +author: ChatMessageAuthor
+    +userId: UserId
+    +workspaceId: WorkspaceId
+    +documentIds: List<DocumentId>
+    +chatPlatform: ChatPlatform
+    +metadata: Map<String, Any>
+  }
+
+  enum ChatMessageAuthor {
+    USER
+    ASSISTANT
+    SYSTEM
+    TOOL
+  }
+
+  enum ChatPlatform {
+    TELEGRAM
+  }
+}
+
+Document .up.|> WorkspaceOwned
+Workspace "1" *-- "*" Document
+Document -- DocumentType
+ChatMessage "*" -- "0..*" Document : documentIds
+ChatMessage "*" -- "1" User : userId
+ChatMessage "*" -- "1" Workspace : workspaceId
+ChatMessage -- ChatMessageAuthor
+ChatMessage -- ChatPlatform
+@enduml

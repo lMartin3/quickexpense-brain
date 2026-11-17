@@ -1,0 +1,58 @@
+@startuml
+!pragma layout smetana
+!include _estilo.iuml
+hide empty attributes
+left to right direction
+skinparam classAttributeIconSize 0
+
+package "web.application.controller" as pctl {
+  class TelegramWebhookController {
+    +handleUpdate(messageStr)
+  }
+}
+
+package "web.application.service.chat.telegram" as ptg {
+  class TelegramUpdateHandler {
+    +handle(updateJson)
+  }
+  class TelegramChatIntegration
+}
+
+package "web.application.service.chat" as pchat {
+  class ChatService {
+    +routeAndProcessInboundMessage(incoming)
+    +sendMessage(outgoing)
+  }
+  interface ChatIntegration {
+    +supports(): ChatPlatform
+    +process(incoming)
+    +send(outbound)
+  }
+  class ProcessedMessageAndAttachments {
+    +message: ChatMessage
+    +attachments: Map<Document, ByteArray>
+  }
+}
+
+package "web.domain.chat.exchange" as pex {
+  interface InboundChatMessage
+  class InboundTelegramChatMessage
+  class OutboundChatMessage
+}
+
+class DocumentProcessingService
+class DocumentService
+class AssistantService
+
+TelegramWebhookController --> TelegramUpdateHandler
+TelegramUpdateHandler --> ChatService
+TelegramUpdateHandler ..> InboundTelegramChatMessage : deserializa
+InboundTelegramChatMessage .up.|> InboundChatMessage
+TelegramChatIntegration .up.|> ChatIntegration
+ChatService "1" o-- "*" ChatIntegration : routingTable
+ChatService ..> ProcessedMessageAndAttachments
+ChatService ..> OutboundChatMessage
+ChatService --> DocumentService
+ChatService --> DocumentProcessingService
+ChatService --> AssistantService
+@enduml

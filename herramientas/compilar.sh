@@ -73,6 +73,43 @@ MD_INTERMEDIO="markdown-simple_tables-multiline_tables"
 
 latex_crudo() { printf '```{=latex}\n%s\n```\n\n' "$1"; }
 
+# --- Casos de uso (10 - Solución Tecnológica/casos-de-uso/CU-*.md) ---------------------
+# Cada caso de uso es un .md propio: se compilan debajo de 10.5.3 y se listan en 10.5.2.
+CASOS_DE_USO="$DOC/10 - Solución Tecnológica/casos-de-uso"
+
+# Valor de un campo del frontmatter (sin comillas)
+campo_fm() {
+  awk -v k="$2" '/^---[[:space:]]*$/{n++; next} n==1 && $0 ~ "^"k":" {
+    sub("^"k":[[:space:]]*", ""); gsub(/^"|"[[:space:]]*$/, ""); print; exit }' "$1"
+}
+
+# Archivos de casos de uso que se incluyen (los que no están pendientes), ordenados por ID
+casos_incluidos() {
+  [[ -d "$CASOS_DE_USO" ]] || return 0
+  local f
+  while IFS= read -r f; do
+    [[ -n "$(convertir "$f" "$MD_INTERMEDIO")" ]] && echo "$f"
+  done < <(find "$CASOS_DE_USO" -maxdepth 1 -type f -name 'CU-*.md' | sort -V)
+}
+
+casos_de_uso() {
+  local f
+  while IFS= read -r f; do
+    convertir "$f" "$MD_INTERMEDIO"
+    echo
+  done < <(casos_incluidos)
+}
+
+indice_casos_de_uso() {
+  local f id filas=""
+  while IFS= read -r f; do
+    id="$(campo_fm "$f" id)"
+    filas+="| $id | $(campo_fm "$f" nombre) | \\pageref{${id,,}} |"$'\n'
+  done < <(casos_incluidos)
+  [[ -z "$filas" ]] && return 0
+  printf '| Identificación | Nombre | Página |\n| --- | --- | --- |\n%s' "$filas"
+}
+
 mkdir -p "$GEN" "$BUILD"
 
 # Referencias bibliográficas: frontmatter de documentacion/_Referencias.md
@@ -110,6 +147,17 @@ pandoc "$DOC/00 - Preliminares/Carátula.md" -f markdown -t latex \
 
     while IFS= read -r archivo; do
       cuerpo="$(convertir "$archivo" "$MD_INTERMEDIO")"
+      punto="$(basename "$archivo" | grep -oE '^[0-9]+(\.[0-9]+)*')"
+
+      # 10.5.2 y 10.5.3 se completan con los archivos de casos de uso
+      extra=""
+      case "$punto" in
+        10.5.2) extra="$(indice_casos_de_uso)" ;;
+        10.5.3) extra="$(casos_de_uso)" ;;
+      esac
+      if [[ -z "$cuerpo" && -n "$extra" ]]; then
+        cuerpo="$(convertir "$archivo" "$MD_INTERMEDIO" -M siempre_incluir=true)"
+      fi
       [[ -z "$cuerpo" ]] && continue
 
       if ! $capitulo_emitido; then
@@ -117,7 +165,6 @@ pandoc "$DOC/00 - Preliminares/Carátula.md" -f markdown -t latex \
         capitulo_emitido=true
       fi
 
-      punto="$(basename "$archivo" | grep -oE '^[0-9]+(\.[0-9]+)*')"
       if [[ "$punto" =~ ^([0-9]+\.[0-9]+)\.[0-9]+ ]]; then
         padre="${BASH_REMATCH[1]}"
         if [[ -n "${INTERMEDIOS[$padre]:-}" && -z "${intermedio_emitido[$padre]:-}" ]]; then
@@ -128,6 +175,10 @@ pandoc "$DOC/00 - Preliminares/Carátula.md" -f markdown -t latex \
 
       echo "$cuerpo"
       echo
+      if [[ -n "$extra" ]]; then
+        echo "$extra"
+        echo
+      fi
     done < <(find "$carpeta" -maxdepth 1 -type f -name '*.md' ! -name '_*' -printf '%f\n' | sort -V | sed "s|^|$carpeta/|")
 
     unset intermedio_emitido
@@ -137,7 +188,7 @@ pandoc "$DOC/00 - Preliminares/Carátula.md" -f markdown -t latex \
 # Un solo paso de pandoc para todo el contenido: así las citas se resuelven en conjunto
 # (desambiguación 2026a/2026b) y la bibliografía sale completa en 11.3 (::: {#refs}).
 pandoc "$BUILD/contenido.md" -f markdown -t latex \
-  --citeproc --csl="$FILTROS/apa.csl" \
+  --citeproc --csl="$FILTROS/apa.csl" --lua-filter="$FILTROS/figuras.lua" \
   --metadata-file="$BUILD/referencias.yaml" -M lang=es-AR -M link-citations=true \
   -o "$GEN/contenido.tex" 2> "$BUILD/pandoc.log" || { cat "$BUILD/pandoc.log" >&2; exit 1; }
 if grep -q 'Citeproc: citation .* not found' "$BUILD/pandoc.log"; then

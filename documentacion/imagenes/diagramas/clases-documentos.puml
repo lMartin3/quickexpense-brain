@@ -1,0 +1,69 @@
+@startuml
+!pragma layout smetana
+!include _estilo.iuml
+hide empty attributes
+skinparam classAttributeIconSize 0
+
+package "web.application.service.document" as pdoc {
+  class DocumentProcessingService {
+    +processDocument(workspaceId, filename, mimeType, data, uploadTime): Document
+    +extractDocumentContent(type: DocumentType, mimeType: String?, data: ByteArray): Result<String>
+  }
+  class StorageService
+}
+
+package "web.application.service.document.processing" as pproc {
+  interface DocumentProcessor {
+    +getSupportedType(): DocumentType
+    +process(data: ByteArray, mimeType: String?): String
+  }
+  class PdfService
+  class VoiceProcessingService
+  class ImageProcessingService
+}
+
+package "web.application.service.ai" as pai {
+  class SummaryService {
+    +summarize(text: String): Result<String>
+  }
+}
+
+package "expense.application.document" as pdocapp {
+  class DocumentService {
+    +findAllDocuments(): List<Document>
+    +findDocumentById(id: DocumentId): Document
+    +findDocumentDataById(id: DocumentId): Pair<Document, ByteArray>
+    +saveDocument(document: Document, data: ByteArray)
+    +deleteDocumentById(id: DocumentId)
+  }
+  interface DocumentStorage {
+    +save(document: Document, data: ByteArray)
+    +load(documentId: DocumentId): ByteArray?
+    +delete(documentId: DocumentId)
+  }
+}
+
+package "expense.domain.repository" as prepo {
+  interface DocumentRepository
+}
+
+package "web.infrastructure.persistence" as ppers {
+  class DocumentSQLRepository
+}
+
+package "expense.domain.entity" as pent {
+  class Document
+}
+
+DocumentProcessingService "1" o-- "*" DocumentProcessor
+DocumentProcessingService --> SummaryService
+PdfService .up.|> DocumentProcessor
+VoiceProcessingService .up.|> DocumentProcessor
+ImageProcessingService .up.|> DocumentProcessor
+DocumentProcessingService ..> Document : crea
+DocumentService --> DocumentRepository
+DocumentService --> DocumentStorage
+DocumentService ..> Document
+StorageService .up.|> DocumentStorage
+DocumentSQLRepository .up.|> DocumentRepository
+@enduml

@@ -1,0 +1,25 @@
+@startuml
+!pragma layout smetana
+!include _estilo.iuml
+hide empty attributes
+left to right direction
+skinparam classAttributeIconSize 0
+
+package "web.domain.chat.exchange" as pex {
+  interface InboundChatMessage {
+    +getPlatform(): ChatPlatform
+    +getMessageContent(): String
+    +getUserId(): String
+    +getAttachments(): List<InboundChatAttachment>
+    +getTimestamp(): Long
+  }
+  class InboundTelegramChatMessage
+  class OutboundChatMessage {
+    +userId: UserId
+    +message: String
+    +platform: ChatPlatform
+  }
+}
+
+InboundTelegramChatMessage .up.|> InboundChatMessage
+@enduml

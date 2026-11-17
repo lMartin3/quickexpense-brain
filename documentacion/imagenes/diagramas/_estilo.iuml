@@ -1,0 +1,11 @@
+' Estilo común de los diagramas del capítulo 10. Se incluye con: !include _estilo.iuml
+skinparam defaultFontName "Liberation Sans"
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam monochrome true
+skinparam roundCorner 4
+skinparam packageStyle rectangle
+skinparam sequenceMessageAlign left
+skinparam sequenceReferenceBackgroundColor white
+skinparam maxMessageSize 120
+hide footbox
